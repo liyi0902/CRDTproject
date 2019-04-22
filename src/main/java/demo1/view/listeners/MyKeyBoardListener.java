@@ -25,15 +25,12 @@ public class MyKeyBoardListener extends KeyAdapter {
                 //TODO DELETE
             }
         }
+        else{
+            char c=e.getKeyChar();
+            System.out.println(c);
 
-        char c=e.getKeyChar();
-        System.out.println(c);
-
-        //TODO INSERT
-
-
-
-
+            //TODO INSERT
+        }
 
     }
 
