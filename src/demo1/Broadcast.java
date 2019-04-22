@@ -28,7 +28,10 @@ public class Broadcast {
             send_thread = new Send_Thread(sendsocket, address);
             //接受线程的建立
             rece_thread = new Receive_Thread(recesocket);
-
+            //启动用户输入线程
+            Input_Thread input_thread=new Input_Thread();
+            input_thread.start();
+            //启动发送和接收线程
             send_thread.start();
             rece_thread.start();
 
