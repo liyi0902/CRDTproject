@@ -17,11 +17,30 @@ public class MyKeyBoardListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //TODO
+        //Returns the position of the text insertion caret for the text component.
+        int pos=editorFrame.getTextArea().getCaretPosition();
+        System.out.println(pos);
+        if(e.getKeyCode()==KeyEvent.VK_BACK_SPACE){
+            if(pos != 0) {
+                //TODO DELETE
+            }
+        }
+
+        char c=e.getKeyChar();
+        System.out.println(c);
+
+        //TODO INSERT
 
 
-//        if(e.getKeyCode()== KeyEvent.VK_C){
-//
-//        }
+
+
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //Returns the position of the text insertion caret for the text component.
+        int pos=editorFrame.getTextArea().getCaretPosition();
+
     }
 }

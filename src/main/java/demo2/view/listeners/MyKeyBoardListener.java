@@ -22,9 +22,6 @@ public class MyKeyBoardListener extends KeyAdapter {
         int pos=editorFrame.getTextArea().getCaretPosition();
 
 
-//        if(e.getKeyCode()== KeyEvent.VK_C){
-//
-//        }
     }
 
     @Override
