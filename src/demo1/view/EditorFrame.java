@@ -122,6 +122,7 @@ public class EditorFrame extends JFrame {
                     newInstance.createMenu();
                     newInstance.addListener();
                     newInstance.setVisible(true);
+                    System.out.println(1);
                 }
             }
         }
@@ -148,7 +149,8 @@ public class EditorFrame extends JFrame {
     public synchronized void remoteDelete(int pos) {
         //TODO
 
-        textArea.remove(pos);
+        textArea.replaceRange("",pos,pos+1);
+
     }
 
 
@@ -191,5 +193,6 @@ public class EditorFrame extends JFrame {
     public void setPopMenu(JPopupMenu popMenu) {
         this.popMenu = popMenu;
     }
+
 }
 

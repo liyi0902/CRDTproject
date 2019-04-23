@@ -148,7 +148,8 @@ public class EditorFrame extends JFrame {
     public synchronized void remoteDelete(int pos) {
         //TODO
 
-        textArea.remove(pos);
+        textArea.replaceRange("",pos,pos+1);
+
     }
 
 
