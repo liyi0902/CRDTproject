@@ -1,5 +1,7 @@
 package demo1;
 
+import demo1.view.EditorFrame;
+
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 
@@ -34,6 +36,8 @@ public class Broadcast {
             //启动发送和接收线程
             send_thread.start();
             rece_thread.start();
+//            //启动文本编辑器
+//            EditorFrame.getInstance();
 
         } catch (Exception e) {
             System.out.println("Exception!");
