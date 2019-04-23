@@ -30,10 +30,7 @@ public class Send_Thread extends Thread{
         {
             while(true)
             {
-                //输入待发送的内容
-//                String input = scanner.nextLine();
-//                if(input.equals("exit"))
-//                    break;
+
                 Message m=new Message(Input_Thread.getText());
                 String message=m.getMessage();
                 byte[] data = null;
@@ -44,9 +41,6 @@ public class Send_Thread extends Thread{
                 sender.send(pack);
                 sleep(5000);
             }
-
-//            System.out.println("Exit!");
-//            System.exit(1);
 
         }catch(IOException e)
         {

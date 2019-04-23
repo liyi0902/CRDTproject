@@ -31,11 +31,13 @@ public class Letter implements Comparable<Letter>{
 
     @Override
     public int compareTo(Letter letter) {
+        //先按照char_index的大小排列
         if(this.char_index>letter.char_index){
             return 1;
         }else if (this.char_index<letter.char_index){
             return -1;
         }else {
+            //再按照user_id的大小排列
             if(this.user_id>letter.user_id){
                 return 1;
             }else if(this.user_id<letter.user_id){
