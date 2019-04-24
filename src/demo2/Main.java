@@ -7,7 +7,7 @@ public class Main {
     {
 
         EditorFrame e=EditorFrame.getInstance();
-        e.getTextArea().setText("56789");
+
 
     }
 

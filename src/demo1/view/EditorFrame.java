@@ -194,5 +194,9 @@ public class EditorFrame extends JFrame {
         this.popMenu = popMenu;
     }
 
+    public static void main(String[] args) {
+        getInstance();
+    }
+
 }
 
