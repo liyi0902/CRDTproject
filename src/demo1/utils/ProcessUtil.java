@@ -4,6 +4,9 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.util.UUID;
 
+/**
+ * generate id for user
+ */
 public class ProcessUtil {
     /**
      * get the process id ,it can be used to distinguish different users in one computer
