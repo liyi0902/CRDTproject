@@ -19,7 +19,7 @@ public class AboutAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null,"CRDT DOC EDITOR","about",JOptionPane. INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(editorFrame,"CRDT DOC EDITOR","about",JOptionPane. INFORMATION_MESSAGE);
 
 
     }

@@ -1,24 +1,26 @@
 package demo1.view.actions;
 
-import demo1.utils.FileUtil;
 import demo1.view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * open a file
+ * Help
  */
-public class OpenFileAction extends AbstractAction {
+public class HelpAction extends AbstractAction {
     private EditorFrame editorFrame;
 
-    public OpenFileAction() {
-        super("Open");
+    public HelpAction() {
+        super("Help");
         editorFrame= EditorFrame.getInstance();
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        FileUtil.openFile(editorFrame);
+        JOptionPane.showMessageDialog(editorFrame,"Get help on https://github.com/JingeOnline/CRDT_Project",
+                "help",JOptionPane. INFORMATION_MESSAGE);
+
 
     }
 }

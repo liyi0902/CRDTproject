@@ -12,7 +12,7 @@ public class DeleteAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public DeleteAction() {
-        super("delete");
+        super("Delete");
         editorFrame= EditorFrame.getInstance();
     }
 

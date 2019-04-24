@@ -12,14 +12,14 @@ public class AboutAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public AboutAction() {
-        super("about");
+        super("About");
         editorFrame= EditorFrame.getInstance();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null,"CRDT DOC EDITOR","about",JOptionPane. INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(editorFrame,"CRDT DOC EDITOR","about",JOptionPane. INFORMATION_MESSAGE);
 
 
     }

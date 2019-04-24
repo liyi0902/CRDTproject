@@ -8,6 +8,9 @@ import java.io.*;
 
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
+/**
+ * provide methods to operate the file
+ */
 public class FileUtil {
 
     /**
@@ -16,34 +19,44 @@ public class FileUtil {
      */
     public static void openFile(EditorFrame editorFrame){
         try{
+            if(!editorFrame.getTextArea().getText().equals(editorFrame.getTempContent())) {
+                int result = JOptionPane.showConfirmDialog(editorFrame,
+                        "Do you want to save the file before open a new file ?", "warning", JOptionPane.YES_OPTION);
+                // you do nothing if tou choose cancel
+                if(result==JOptionPane.YES_OPTION){
+                    if (editorFrame.getFileTitle() != null) {
+                        FileUtil.saveFile(editorFrame);
+                    }else {
+                        FileUtil.saveFileAs(editorFrame);
+                    }
+                }
+            }
+
             //open the fileDialog
             FileDialog fileDialog = new FileDialog(editorFrame, "open file", FileDialog.LOAD);
-            fileDialog.setFile("*.txt");
+            fileDialog.setFile("Untitled.txt");
             fileDialog.setVisible(true);
 
             if (fileDialog.getFile() != null) {
-                //set file name
-                editorFrame.setFilename(fileDialog.getDirectory() + fileDialog.getFile());
+                //set file title
+                editorFrame.setFileTitle(fileDialog.getDirectory()+fileDialog.getFile());
 
                 //read content of the file
-                FileReader fileReader = new FileReader( editorFrame.getFilename());
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String content = "";
-                while (bufferedReader.ready())
-                {
-                    int c = bufferedReader.read();
-                    content = content+ (char)c;
+                BufferedReader bufferedReader =
+                        new BufferedReader(new FileReader(fileDialog.getDirectory() + fileDialog.getFile()));
+                StringBuilder content =new StringBuilder();
+                while (bufferedReader.ready()) {
+                    int character = bufferedReader.read();
+                    content.append((char)character);
                 }
 
                 //show the file in the text area
-                editorFrame.getTextArea().setText(content);
+                editorFrame.getTextArea().setText(content.toString());
                 bufferedReader.close();
-                fileReader.close();
 
                 //set the temp content and the title
                 editorFrame.setTempContent(editorFrame.getTextArea().getText());
-                editorFrame.setTitle("Editor -" + editorFrame.getFilename());
-
+                editorFrame.setTitle(fileDialog.getFile());
             }
 
         }catch (Exception exception){
@@ -60,8 +73,7 @@ public class FileUtil {
     public static void saveFile(EditorFrame editorFrame){
         try {
             //write the file
-            File writeFile = new File(editorFrame.getFilename());
-            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(writeFile)));
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(new File(editorFrame.getFileTitle()))));
             printWriter.print(editorFrame.getTextArea().getText());
             printWriter.flush();
             printWriter.close();
@@ -81,13 +93,14 @@ public class FileUtil {
      */
     public static void saveFileAs(EditorFrame editorFrame){
         FileDialog fileDialog = new FileDialog(editorFrame, "save as", FileDialog.SAVE);
-        fileDialog.setFile("*.txt");
+        fileDialog.setFile("Untitled.txt");
         fileDialog.setVisible(true);
         if (fileDialog.getFile() != null) {
             try {
                 //write the file
-                File writeFile = new File(fileDialog.getDirectory() + fileDialog.getFile());
-                PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(writeFile)));
+                PrintWriter printWriter =
+                        new PrintWriter(new BufferedWriter(new FileWriter(
+                                new File(fileDialog.getDirectory() + fileDialog.getFile()))));
                 printWriter.print(editorFrame.getTextArea().getText());
                 printWriter.flush();
                 printWriter.close();
@@ -109,12 +122,12 @@ public class FileUtil {
         editorFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //if the current content not equals to the temp content, means you need to save it
         if(!editorFrame.getTextArea().getText().equals(editorFrame.getTempContent())) {
-            int result = JOptionPane.showConfirmDialog(null,
+            int result = JOptionPane.showConfirmDialog(editorFrame,
                     "Do you want to save the file before exit ?", "warning", JOptionPane.YES_NO_CANCEL_OPTION);
 
             // you do nothing if tou choose cancel
             if(result==JOptionPane.YES_OPTION){
-                if (editorFrame.getFilename() != null) {
+                if (editorFrame.getFileTitle() != null) {
                     FileUtil.saveFile(editorFrame);
                 }else {
                     FileUtil.saveFileAs(editorFrame);
@@ -122,9 +135,6 @@ public class FileUtil {
                 System.exit(0);
             }else if(result==JOptionPane.NO_OPTION){
                 System.exit(0);
-            }
-            else if(result==JOptionPane.CANCEL_OPTION){
-
             }
         } else {
             System.exit(0);

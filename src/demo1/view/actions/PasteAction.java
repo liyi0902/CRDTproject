@@ -12,7 +12,7 @@ public class PasteAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public PasteAction() {
-        super("paste");
+        super("Paste");
         editorFrame= EditorFrame.getInstance();
     }
 

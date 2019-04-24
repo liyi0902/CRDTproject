@@ -12,7 +12,7 @@ public class CutAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public CutAction() {
-        super("cut");
+        super("Cut");
         editorFrame= EditorFrame.getInstance();
     }
 

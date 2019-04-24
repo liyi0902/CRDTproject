@@ -6,6 +6,9 @@ import demo1.view.EditorFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * listen to the event when user operate the window
+ */
 public class MyWindowListener extends WindowAdapter {
     private EditorFrame editorFrame;
 

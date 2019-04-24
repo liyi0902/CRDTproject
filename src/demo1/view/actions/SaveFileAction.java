@@ -13,13 +13,13 @@ public class SaveFileAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public SaveFileAction() {
-        super("save");
+        super("Save");
         editorFrame= EditorFrame.getInstance();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (editorFrame.getFilename() != null) {
+        if (editorFrame.getFileTitle() != null) {
             FileUtil.saveFile(editorFrame);
         }else {
             FileUtil.saveFileAs(editorFrame);

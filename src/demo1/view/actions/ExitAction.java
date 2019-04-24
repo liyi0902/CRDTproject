@@ -13,7 +13,7 @@ public class ExitAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public ExitAction() {
-        super("exit");
+        super("Close");
         editorFrame= EditorFrame.getInstance();
     }
 
