@@ -6,15 +6,26 @@ import java.util.List;
 
 public class Text {
 
+    //本地保存的letter list
     public static List<Letter> list = new LinkedList<>();
+    //待插入的letter list
+    public static List<Letter> insertList=new LinkedList<>();
+    //待删除的letter list
+    public static List<Letter> deleteList=new LinkedList<>();
 
     public static void main(String[] args) {
         initialList();
+        System.out.println("本地原始list");
+        printText(list);
+
         List<Letter> addList=getPositiveList();
         insertLetterList(addList);
+        System.out.println("插入一组letter后的结果");
         printText(list);
+
         List<Letter> removeList=getNegativeList();
         deleteLetterList(removeList);
+        System.out.println("删除一组letter后的结果");
         printText(list);
     }
 
@@ -34,6 +45,10 @@ public class Text {
         list.add(new Letter(1, 5, 'o'));
     }
 
+    /**
+     * 插入一个letter对象到当前的list中
+     * @param letter
+     */
     public static void insertLetterIntoList(Letter letter) {
         if(letter.position!=null){
             Letter positionLetter = getLetterObj(letter.position);
@@ -45,11 +60,21 @@ public class Text {
         }
 
     }
+
+    /**
+     * 从list中删除一个letter对象
+     * @param letter
+     */
     public static void removeLetterFromList(Letter letter){
         Letter remove_letter=getLetterObj(letter);
         list.remove(remove_letter);
     }
 
+    /**
+     * 通过position信息，定位一个letter对象（用来定位插入位置）
+     * @param position
+     * @return
+     */
     public static Letter getLetterObj(int[] position) {
         for (Letter l : list
         ) {
@@ -61,6 +86,11 @@ public class Text {
         return null;
     }
 
+    /**
+     * 通过传入的letter对象，找到list中与之相等的letter对象（用来定位删除的letter）
+     * @param letter
+     * @return
+     */
     public static Letter getLetterObj(Letter letter){
         for (Letter l:list
              ) {
@@ -72,12 +102,22 @@ public class Text {
         return null;
     }
 
+    /**
+     * 把一组letter（list）插入到本地的letter list中，该方法会对插入的letter重新排序，保证一致性。
+     * @param list
+     */
     public static void insertLetterList(List<Letter> list){
+        Collections.sort(list);
         for (Letter letter:list
              ) {
             insertLetterIntoList(letter);
         }
     }
+
+    /**
+     * 从本地的letter list中删除一组letter （list）
+     * @param list
+     */
     public static void deleteLetterList(List<Letter> list){
         for (Letter letter:list){
             removeLetterFromList(letter);
@@ -87,15 +127,14 @@ public class Text {
 
     public static List<Letter> getPositiveList(){
         List<Letter> list=new LinkedList<>();
+        list.add(new Letter(1,6,'~'));
+        list.add(new Letter(2,9,'A',new int[]{2,8}));
         list.add(new Letter(2,6,'A',new int[]{1,1}));
         list.add(new Letter(3,7,'B',new int[]{3,6}));
         list.add(new Letter(2,8,'A',new int[]{1,4}));
-        list.add(new Letter(2,9,'A',new int[]{2,8}));
         list.add(new Letter(2,7,'A',new int[]{2,6}));
         list.add(new Letter(3,6,'B',new int[]{1,1}));
-        list.add(new Letter(1,6,'~'));
         list.add(new Letter(1,7,'W',new int[]{1,6}));
-        Collections.sort(list);
         return list;
     }
 //
@@ -103,6 +142,9 @@ public class Text {
         List<Letter> list=new LinkedList<>();
         list.add(new Letter(1,6));
         list.add(new Letter(1,5));
+        list.add(new Letter(1,7));
+        list.add(new Letter(3,7));
+        list.add(new Letter(3,6));
         return list;
     }
 

@@ -5,6 +5,13 @@ import demo1.view.EditorFrame;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 
+/**
+ * 该类的main方法，需要成为成为本程序的主入口。
+ * 现阶段测试，点对点单播需要手动修改port端口，防冲突，ip设置成localhost就行。
+ * 若想测试全网段广播，默认参数不用改，但需要多台设备在一个局域网下，一台电脑无法完成，因为端口永远是冲突的。
+ *
+ * 如果用当前默认参数启动一个客户端，该客户端能收到自己的广播信息。用户在控制台上输入的内容会被广播出去，然后自己接收到，再显示到控制台上。
+ */
 public class Broadcast {
     //接收方主机端口号
     public static final int DEST_PORT = 9000;

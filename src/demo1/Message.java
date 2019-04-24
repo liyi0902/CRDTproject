@@ -12,6 +12,7 @@ public class Message {
     public String localName;
     public int port;
     public String content;
+    //发送所需的json字符串，或者接收到的未解码json字符串。
     public String message;
 
 
@@ -19,12 +20,21 @@ public class Message {
 
     }
 
+    /**
+     * 构造INVITATION，JOIN，LEAVE等消息的方法，只需传入消息类型。
+     * @param type
+     */
     public Message(MessageType type){
         setAddress();
         this.port=Broadcast.RECE_PORT;
         this.type=type;
         buildJson();
     }
+
+    /**
+     * 构造SYC消息的方法，需要传入同步的字符串内容。
+     * @param content
+     */
     public Message(String content){
         setAddress();
         this.port=Broadcast.RECE_PORT;
@@ -49,6 +59,9 @@ public class Message {
         }
     }
 
+    /**
+     * 把一个Message对象，编码成Json字符串，准备发送。自动添加本机ip，port，localName等字段。
+     */
     private void buildJson(){
         JSONObject obj=new JSONObject();
         obj.put("type",type.toString());
@@ -59,6 +72,11 @@ public class Message {
         this.message=obj.toString();
     }
 
+    /**
+     * 把收到的一个消息字符串，解析成Message对象。
+     * @param s
+     * @return
+     */
     public static Message DecodeMessage(String s){
         JSONObject js=new JSONObject(s);
         Message message=new Message();
