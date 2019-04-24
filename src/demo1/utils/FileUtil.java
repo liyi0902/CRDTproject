@@ -19,19 +19,6 @@ public class FileUtil {
      */
     public static void openFile(EditorFrame editorFrame){
         try{
-            if(!editorFrame.getTextArea().getText().equals(editorFrame.getTempContent())) {
-                int result = JOptionPane.showConfirmDialog(editorFrame,
-                        "Do you want to save the file before open a new file ?", "warning", JOptionPane.YES_OPTION);
-                // you do nothing if tou choose cancel
-                if(result==JOptionPane.YES_OPTION){
-                    if (editorFrame.getFileTitle() != null) {
-                        FileUtil.saveFile(editorFrame);
-                    }else {
-                        FileUtil.saveFileAs(editorFrame);
-                    }
-                }
-            }
-
             //open the fileDialog
             FileDialog fileDialog = new FileDialog(editorFrame, "open file", FileDialog.LOAD);
             fileDialog.setFile("Untitled.txt");
@@ -125,7 +112,7 @@ public class FileUtil {
             int result = JOptionPane.showConfirmDialog(editorFrame,
                     "Do you want to save the file before exit ?", "warning", JOptionPane.YES_NO_CANCEL_OPTION);
 
-            // you do nothing if tou choose cancel
+            // you do not exit if tou choose cancel
             if(result==JOptionPane.YES_OPTION){
                 if (editorFrame.getFileTitle() != null) {
                     FileUtil.saveFile(editorFrame);

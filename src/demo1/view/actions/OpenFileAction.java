@@ -18,7 +18,22 @@ public class OpenFileAction extends AbstractAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        FileUtil.openFile(editorFrame);
+        if(!editorFrame.getTextArea().getText().equals(editorFrame.getTempContent())) {
+            int result = JOptionPane.showConfirmDialog(editorFrame,
+                    "Do you want to save the file before open a new file ?", "warning", JOptionPane.YES_NO_CANCEL_OPTION);
+            // you do not open another file if tou choose cancel
+            if(result==JOptionPane.YES_OPTION){
+                if (editorFrame.getFileTitle() != null) {
+                    FileUtil.saveFile(editorFrame);
+                }else {
+                    FileUtil.saveFileAs(editorFrame);
+                }
+                FileUtil.openFile(editorFrame);
+            }else if(result==JOptionPane.NO_OPTION){
+                FileUtil.openFile(editorFrame);
+            }
+        }
+
 
     }
 }
