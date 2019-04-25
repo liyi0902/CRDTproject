@@ -8,13 +8,14 @@ public class Letter implements Comparable<Letter>{
     //insert after this letter [user_id,char_index]
     int[] position;
 
-    //创建一个要删除的字符对象
-    public Letter (int user_id,int char_index){
-        this.user_id=user_id;
-        this.char_index=char_index;
-    }
+    //好像没什么用
+//    public Letter (int user_id,int char_index){
+//        this.user_id=user_id;
+//        this.char_index=char_index;
+//    }
 
     //创建一个要插入的字符对象，该字符插入在文本的首位
+    //创建一个要删除的字符对象，把字符也传入，方便观察。
     public Letter(int user_id, int char_index, char letter) {
         this.user_id = user_id;
         this.char_index = char_index;
@@ -27,6 +28,38 @@ public class Letter implements Comparable<Letter>{
         this.char_index = char_index;
         this.letter = letter;
         this.position=position;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getChar_index() {
+        return char_index;
+    }
+
+    public void setChar_index(int char_index) {
+        this.char_index = char_index;
+    }
+
+    public char getLetter() {
+        return letter;
+    }
+
+    public void setLetter(char letter) {
+        this.letter = letter;
+    }
+
+    public int[] getPosition() {
+        return position;
+    }
+
+    public void setPosition(int[] position) {
+        this.position = position;
     }
 
     @Override

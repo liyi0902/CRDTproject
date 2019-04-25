@@ -32,7 +32,11 @@ public class Receive_Thread extends Thread {
                 //System.out.println(packet.getSocketAddress()+"  Says :"+s);
                 System.out.println("Received raw message: "+s);
                 Message message=Message.DecodeMessage(s);
-                System.out.println(message.localName+":"+message.content);
+                System.out.println(message.localName);
+                System.out.println("positive:"+message.positive);
+                System.out.println("negative:"+message.negative);
+                System.out.println("Current Text:");
+                Text.printText(Text.list);
                 packet.setLength(buffer.length);
             }
         }

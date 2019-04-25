@@ -17,6 +17,8 @@ public class Send_Thread extends Thread{
     //从键盘输入
     Scanner scanner = new Scanner(System.in);
 
+    private static int test=0;
+
     public Send_Thread(DatagramSocket sender,InetSocketAddress address)
     {
         this.sender = sender;
@@ -30,9 +32,16 @@ public class Send_Thread extends Thread{
         {
             while(true)
             {
+                test++;
+                String message;
+                if(test==3){
+                    message=getTestMessage();
+                }else {
+//                    Message m=new Message(Text.getPositiveField(),Text.getNegativeField());
+                    Message m=new Message("[]","[]");
+                    message=m.getMessage();
+                }
 
-                Message m=new Message(Input_Thread.getText());
-                String message=m.getMessage();
                 byte[] data = null;
                 data = message.getBytes("UTF-8");
                 //创建UDP数据报
@@ -50,6 +59,14 @@ public class Send_Thread extends Thread{
             System.out.println("Error in sleep()");
             e.printStackTrace();
         }
+    }
+
+    private String getTestMessage(){
+        String pos=Text.getTestJsonStringPos();
+        String neg=Text.getTestJsonStringNeg();
+        Message message=new Message(pos,neg);
+//        System.out.println(message.getMessage());
+        return message.getMessage();
     }
 
 

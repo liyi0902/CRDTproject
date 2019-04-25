@@ -40,6 +40,9 @@ public class Broadcast {
             //启动用户输入线程
             Input_Thread input_thread=new Input_Thread();
             input_thread.start();
+
+
+            Text.initialList();
             //启动发送和接收线程
             send_thread.start();
             rece_thread.start();

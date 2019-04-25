@@ -1,8 +1,9 @@
 package demo1;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.net.*;
-
+import java.util.List;
 
 
 public class Message {
@@ -11,7 +12,8 @@ public class Message {
     public String ip;
     public String localName;
     public int port;
-    public String content;
+    public String positive;
+    public String negative;
     //发送所需的json字符串，或者接收到的未解码json字符串。
     public String message;
 
@@ -33,13 +35,14 @@ public class Message {
 
     /**
      * 构造SYC消息的方法，需要传入同步的字符串内容。
-     * @param content
+     * @param positive,negative
      */
-    public Message(String content){
+    public Message(String positive,String negative){
         setAddress();
         this.port=Broadcast.RECE_PORT;
         this.type=MessageType.SNC;
-        this.content=content;
+        this.positive=positive;
+        this.negative=negative;
         buildJson();
     }
 
@@ -67,7 +70,8 @@ public class Message {
         obj.put("type",type.toString());
         obj.put("ip",ip);
         obj.put("localName",localName);
-        obj.put("content",content);
+        obj.put("positive",positive);
+        obj.put("negative",negative);
         obj.put("port",port);
         this.message=obj.toString();
     }
@@ -80,15 +84,18 @@ public class Message {
     public static Message DecodeMessage(String s){
         JSONObject js=new JSONObject(s);
         Message message=new Message();
-
         MessageType type=MessageType.valueOf(js.get("type").toString());
         message.type=type;
         message.ip=js.getString("ip");
         message.port=js.getInt("port");
         message.localName=js.getString("localName");
-        message.content=js.getString("content");
+        message.positive=js.getString("positive");
+        message.negative=js.getString("negative");
         message.message=s;
 
+        Text.mergeMessage(message.positive,message.negative);
         return message;
     }
+
+
 }
