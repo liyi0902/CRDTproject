@@ -6,20 +6,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * show about message
+ * Help
  */
-public class AboutAction extends AbstractAction {
+public class HelpAction extends AbstractAction {
     private EditorFrame editorFrame;
 
-    public AboutAction() {
-        super("About");
+    public HelpAction() {
+        super("Help");
         editorFrame= EditorFrame.getInstance();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(editorFrame,"CRDT DOC EDITOR","about",JOptionPane. INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(editorFrame,"Get help on https://github.com/JingeOnline/CRDT_Project",
+                "help",JOptionPane. INFORMATION_MESSAGE);
 
 
     }

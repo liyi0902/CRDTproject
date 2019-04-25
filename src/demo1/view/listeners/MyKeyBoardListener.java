@@ -6,7 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * listen the keyboaed event
+ * listen the  event when user click the keyboard
  */
 public class MyKeyBoardListener extends KeyAdapter {
     private EditorFrame editorFrame;

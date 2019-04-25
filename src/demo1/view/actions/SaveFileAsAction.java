@@ -14,7 +14,7 @@ public class SaveFileAsAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public SaveFileAsAction() {
-        super("save as ");
+        super("Save As ");
         editorFrame= EditorFrame.getInstance();
     }
 

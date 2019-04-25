@@ -13,7 +13,7 @@ public class CopyAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public CopyAction() {
-        super("copy");
+        super("Copy");
         editorFrame= EditorFrame.getInstance();
     }
 

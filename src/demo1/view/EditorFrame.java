@@ -14,30 +14,50 @@ import javax.swing.*;
  * the frame of editor
  */
 public class EditorFrame extends JFrame {
+    /**
+     * main text area
+     */
     private JTextArea textArea;
-    private String filename;
+    /**
+     * file title
+     */
+    private String fileTitle;
+    /**
+     * the temp content which has not been saved by the user
+     */
     private String tempContent = "";
+    /**
+     * menu bar
+     */
     private JMenuBar menu;
+    /**
+     * pop menu when click the right button of mouse
+     */
     private JPopupMenu popMenu;
+    /**
+     * the scroll bar
+     */
+    private JScrollPane scroll;
 
+    /**
+     * The instance of this class, use singleton pattern
+     */
     private volatile static EditorFrame newInstance;
 
-
-
+    /**
+     * constructor
+     */
     private EditorFrame() {
         menu=new JMenuBar();
         popMenu = new JPopupMenu();
-
-        setTitle("Editor");
         textArea = new JTextArea();
+        scroll = new JScrollPane(textArea);
 
-        //add scroll bar
-        JScrollPane scroll = new JScrollPane(textArea);
-        add(scroll);
-
-        //set size and location
-        setSize(800,600);
-        setLocation(300, 100);
+        //set the component and size of the editor
+        this.setTitle("Editor");
+        this.add(scroll);
+        this.setSize(800,600);
+        this.setLocation(300, 100);
 
     }
 
@@ -50,6 +70,7 @@ public class EditorFrame extends JFrame {
         JMenu edit = new JMenu("Edit");
         JMenu about = new JMenu("About");
 
+        //create menu
         JMenuItem newFile = new JMenuItem(new NewFileAction());
         JMenuItem open = new JMenuItem(new OpenFileAction());
         JMenuItem save = new JMenuItem(new SaveFileAction());
@@ -69,7 +90,9 @@ public class EditorFrame extends JFrame {
         JMenuItem clear_pop=new JMenuItem(new ClearAction());
 
         JMenuItem aboutThis = new JMenuItem(new AboutAction());
+        JMenuItem help = new JMenuItem(new HelpAction());
 
+        //add menu
         file.add(newFile);
         file.add(open);
         file.add(save);
@@ -82,14 +105,14 @@ public class EditorFrame extends JFrame {
         edit.add(delete);
         edit.add(clear);
 
+        about.add(aboutThis);
+        about.add(help);
+
         popMenu.add(copy_pop);
         popMenu.add(cut_pop);
         popMenu.add(paste_pop);
         popMenu.add(delete_pop);
         popMenu.add(clear_pop);
-
-
-        about.add(aboutThis);
 
         menu.add(file);
         menu.add(edit);
@@ -97,6 +120,7 @@ public class EditorFrame extends JFrame {
 
         textArea.add(popMenu);
         setJMenuBar(menu);
+
 
     }
 
@@ -122,7 +146,6 @@ public class EditorFrame extends JFrame {
                     newInstance.createMenu();
                     newInstance.addListener();
                     newInstance.setVisible(true);
-                    System.out.println(1);
                 }
             }
         }
@@ -162,12 +185,12 @@ public class EditorFrame extends JFrame {
         this.textArea = textArea;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getFileTitle() {
+        return fileTitle;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setFileTitle(String fileTitle) {
+        this.fileTitle = fileTitle;
     }
 
     public String getTempContent() {
@@ -192,6 +215,19 @@ public class EditorFrame extends JFrame {
 
     public void setPopMenu(JPopupMenu popMenu) {
         this.popMenu = popMenu;
+    }
+
+
+    public JScrollPane getScroll() {
+        return scroll;
+    }
+
+    public void setScroll(JScrollPane scroll) {
+        this.scroll = scroll;
+    }
+
+    public static void main(String[] args) {
+        getInstance();
     }
 
 }
