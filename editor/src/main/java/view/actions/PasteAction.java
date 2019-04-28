@@ -1,6 +1,6 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.view.EditorFrame;
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +12,8 @@ public class PasteAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public PasteAction() {
-        super("paste");
-        editorFrame=EditorFrame.getInstance();
+        super("Paste");
+        editorFrame= EditorFrame.getInstance();
     }
 
 

@@ -1,7 +1,7 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.utils.FileUtil;
-import demo2.view.EditorFrame;
+
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +14,8 @@ public class CopyAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public CopyAction() {
-        super("copy");
-        editorFrame=EditorFrame.getInstance();
+        super("Copy");
+        editorFrame= EditorFrame.getInstance();
     }
 
 

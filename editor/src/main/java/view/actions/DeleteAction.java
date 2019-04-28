@@ -1,6 +1,7 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.view.EditorFrame;
+
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +13,8 @@ public class DeleteAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public DeleteAction() {
-        super("delete");
-        editorFrame=EditorFrame.getInstance();
+        super("Delete");
+        editorFrame= EditorFrame.getInstance();
     }
 
 

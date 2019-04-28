@@ -1,7 +1,9 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.utils.FileUtil;
-import demo2.view.EditorFrame;
+
+
+import utils.FileUtil;
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +15,8 @@ public class ExitAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public ExitAction() {
-        super("exit");
-        editorFrame=EditorFrame.getInstance();
+        super("Close");
+        editorFrame= EditorFrame.getInstance();
     }
 
     @Override

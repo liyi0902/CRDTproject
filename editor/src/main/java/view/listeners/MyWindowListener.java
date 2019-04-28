@@ -1,17 +1,21 @@
-package demo2.view.listeners;
+package view.listeners;
 
-import demo2.utils.FileUtil;
-import demo2.view.EditorFrame;
 
-import javax.swing.*;
+
+import utils.FileUtil;
+import view.EditorFrame;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * listen to the event when user operate the window
+ */
 public class MyWindowListener extends WindowAdapter {
     private EditorFrame editorFrame;
 
     public MyWindowListener() {
-        editorFrame=EditorFrame.getInstance();
+        editorFrame= EditorFrame.getInstance();
     }
 
     @Override

@@ -1,7 +1,7 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.utils.FileUtil;
-import demo2.view.EditorFrame;
+import utils.FileUtil;
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +14,8 @@ public class SaveFileAsAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public SaveFileAsAction() {
-        super("save as ");
-        editorFrame=EditorFrame.getInstance();
+        super("Save As ");
+        editorFrame= EditorFrame.getInstance();
     }
 
 

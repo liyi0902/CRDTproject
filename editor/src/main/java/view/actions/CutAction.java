@@ -1,6 +1,7 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.view.EditorFrame;
+
+import view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +13,8 @@ public class CutAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public CutAction() {
-        super("cut");
-        editorFrame=EditorFrame.getInstance();
+        super("Cut");
+        editorFrame= EditorFrame.getInstance();
     }
 
 

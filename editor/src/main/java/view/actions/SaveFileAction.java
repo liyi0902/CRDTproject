@@ -1,12 +1,10 @@
-package demo2.view.actions;
+package view.actions;
 
-import demo2.utils.FileUtil;
-import demo2.view.EditorFrame;
+import utils.FileUtil;
+import view.EditorFrame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.*;
 
 /**
  * save file
@@ -15,13 +13,13 @@ public class SaveFileAction extends AbstractAction {
     private EditorFrame editorFrame;
 
     public SaveFileAction() {
-        super("save");
-        editorFrame=EditorFrame.getInstance();
+        super("Save");
+        editorFrame= EditorFrame.getInstance();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (editorFrame.getFilename() != null) {
+        if (editorFrame.getFileTitle() != null) {
             FileUtil.saveFile(editorFrame);
         }else {
             FileUtil.saveFileAs(editorFrame);
