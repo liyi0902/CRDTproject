@@ -1,7 +1,7 @@
-package view.actions;
+package editor.view.actions;
 
-import utils.FileUtil;
-import view.EditorFrame;
+import editor.utils.FileUtil;
+import editor.view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

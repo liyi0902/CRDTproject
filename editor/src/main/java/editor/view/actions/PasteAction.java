@@ -1,28 +1,25 @@
-package view.actions;
+package editor.view.actions;
 
-
-
-import utils.FileUtil;
-import view.EditorFrame;
+import editor.view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * exit the editor
+ * paste selected content
  */
-public class ExitAction extends AbstractAction {
+public class PasteAction extends AbstractAction {
     private EditorFrame editorFrame;
 
-    public ExitAction() {
-        super("Close");
+    public PasteAction() {
+        super("Paste");
         editorFrame= EditorFrame.getInstance();
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        FileUtil.exit(editorFrame);
+        editorFrame.getTextArea().paste();
 
     }
-
 }

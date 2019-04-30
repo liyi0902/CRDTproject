@@ -1,9 +1,9 @@
-package view;
+package editor.view;
 
 
 
-import view.actions.*;
-import view.listeners.*;
+import editor.view.actions.*;
+import editor.view.listeners.*;
 
 import javax.swing.*;
 
@@ -224,9 +224,6 @@ public class EditorFrame extends JFrame {
         this.scroll = scroll;
     }
 
-    public static void main(String[] args) {
-        getInstance();
-    }
 
 }
 

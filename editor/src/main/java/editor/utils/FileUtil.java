@@ -1,7 +1,7 @@
-package utils;
+package editor.utils;
 
 
-import view.EditorFrame;
+import editor.view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.*;

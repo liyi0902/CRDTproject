@@ -1,4 +1,4 @@
-package utils;
+package editor.utils;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;

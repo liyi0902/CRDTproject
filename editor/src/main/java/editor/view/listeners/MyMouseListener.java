@@ -1,7 +1,7 @@
-package view.listeners;
+package editor.view.listeners;
 
 
-import view.EditorFrame;
+import editor.view.EditorFrame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

@@ -1,25 +1,26 @@
-package view.actions;
+package editor.view.actions;
 
-import view.EditorFrame;
+
+import editor.view.EditorFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * paste selected content
+ * cut selected content
  */
-public class PasteAction extends AbstractAction {
+public class CutAction extends AbstractAction {
     private EditorFrame editorFrame;
 
-    public PasteAction() {
-        super("Paste");
+    public CutAction() {
+        super("Cut");
         editorFrame= EditorFrame.getInstance();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        editorFrame.getTextArea().paste();
+        editorFrame.getTextArea().cut();
 
     }
 }

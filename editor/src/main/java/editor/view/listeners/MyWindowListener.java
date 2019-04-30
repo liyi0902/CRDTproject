@@ -1,9 +1,9 @@
-package view.listeners;
+package editor.view.listeners;
 
 
 
-import utils.FileUtil;
-import view.EditorFrame;
+import editor.utils.FileUtil;
+import editor.view.EditorFrame;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
