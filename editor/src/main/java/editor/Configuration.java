@@ -8,6 +8,7 @@ public class Configuration {
     public static int localPort = 8000;
     private static String remoteHost = null;
     private static int remotePort = 8000;
+    private static int counter=0;
 
     public static void setLocalHost(String localHost) {
         Configuration.localHost = localHost;
@@ -51,5 +52,13 @@ public class Configuration {
 
     public static String socketAddress(Socket socket){
         return socket.getInetAddress()+":"+socket.getPort();
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Configuration.counter = counter;
     }
 }
