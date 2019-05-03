@@ -28,7 +28,14 @@ public class Disambiguator {
     }
 
 
+    @Override
+    public boolean equals(Object obj) {
+        if(super.equals(obj)){
+            return true;
+        }
+        else {
+            return this.uid.equals(((Disambiguator)obj).getUid())&&this.counter==((Disambiguator)obj).getCounter();
+        }
 
-
-
+    }
 }

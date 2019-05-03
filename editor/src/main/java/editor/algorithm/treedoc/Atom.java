@@ -10,7 +10,7 @@
 //    }
 //
 //
-//    public PositionIdentifier getPositionIdentifier() {
+//    public PositionIdentifier getPos() {
 //        return positionIdentifier;
 //    }
 //

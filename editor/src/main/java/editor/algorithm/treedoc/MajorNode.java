@@ -1,35 +1,66 @@
 package editor.algorithm.treedoc;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.PriorityQueue;
 
-public class MajorNode {
-    private PriorityQueue<MiniNode> miniNodePriorityQueue;
+public class MajorNode extends Node{
+    private PriorityQueue<MiniNode> queue;
     private PositionIdentifier pos;
-    private MajorNode left;
-    private MajorNode right;
+    private Node left;
+    private Node right;
 
-    public MajorNode() {
-        miniNodePriorityQueue=new PriorityQueue<>
-                ((o1,o2)->o1.getDisambiguator().getCounter()==o2.getDisambiguator().getCounter()?
+
+    public MajorNode(MiniNode miniNode) {
+        queue =new PriorityQueue<>
+                (1,(o1,o2)->o1.getDisambiguator().getCounter()==o2.getDisambiguator().getCounter()?
                         o1.getDisambiguator().getUid().compareTo(o2.getDisambiguator().getUid()):
                         o1.getDisambiguator().getCounter()-o2.getDisambiguator().getCounter());
+        queue.add(miniNode);
+        this.pos=miniNode.getPos();
+        this.left=miniNode.getLeft();
+        this.right=miniNode.getRight();
     }
 
     public void add(MiniNode miniNode){
-        miniNodePriorityQueue.add(miniNode);
+        queue.add(miniNode);
     }
 
     public void deletee(Disambiguator disambiguator){
-        for(MiniNode miniNode:miniNodePriorityQueue){
+        for(MiniNode miniNode: queue){
             if(disambiguator.equals(miniNode.getDisambiguator())){
-                miniNodePriorityQueue.remove(miniNode);
+                queue.remove(miniNode);
             }
         }
     }
 
+    public PriorityQueue<MiniNode> getQueue() {
+        return queue;
+    }
 
+    public void setQueue(PriorityQueue<MiniNode> queue) {
+        this.queue = queue;
+    }
 
+    public PositionIdentifier getPos() {
+        return pos;
+    }
 
+    public void setPos(PositionIdentifier pos) {
+        this.pos = pos;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
 }
