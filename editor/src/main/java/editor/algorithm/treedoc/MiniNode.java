@@ -6,9 +6,6 @@ public class MiniNode extends Node{
     private PositionIdentifier pos;
     private Disambiguator disambiguator;
     private char val;
-    private Node left;
-    private Node right;
-
 
     public MiniNode(char val,Disambiguator disambiguator,PositionIdentifier pos){
         this.disambiguator=disambiguator;
@@ -38,11 +35,4 @@ public class MiniNode extends Node{
         return pos;
     }
 
-    public Node getLeft() {
-        return left;
-    }
-
-    public Node getRight() {
-        return right;
-    }
 }

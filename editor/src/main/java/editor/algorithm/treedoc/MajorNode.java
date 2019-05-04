@@ -16,8 +16,6 @@ public class MajorNode extends Node{
                         o1.getDisambiguator().getCounter()-o2.getDisambiguator().getCounter());
         queue.add(miniNode);
         this.pos=miniNode.getPos();
-        this.left=miniNode.getLeft();
-        this.right=miniNode.getRight();
     }
 
     public void add(MiniNode miniNode){

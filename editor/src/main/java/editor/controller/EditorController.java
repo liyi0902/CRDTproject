@@ -1,15 +1,25 @@
 package editor.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import editor.Configuration;
+import editor.message.Message;
+import editor.message.MessageHandler;
+import editor.message.MessageType;
+import editor.message.handlers.*;
 import editor.network.Connection;
 import editor.network.ConnectionListener;
+import editor.utils.JsonUtil;
 import editor.view.EditorFrame;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * the operation of the edit and the network system
@@ -22,11 +32,14 @@ public class EditorController {
     private static ArrayList<Connection> connections;
     private boolean flag = false;
     private volatile static EditorController newInstance;
+    private HashMap<String, MessageHandler> handlerMap;
 
 
     private EditorController(){
         editorFrame=EditorFrame.getInstance();
         connections = new ArrayList<Connection>();
+        handlerMap=new HashMap<>();
+        this.initialHandlers();
         if (Configuration.getRemoteHost() != null) {
             // if remote server host provided, connect to it and then wait for response to start listener.
             this.initiateConnection();
@@ -98,7 +111,7 @@ public class EditorController {
 
     public static EditorController getInstance(){
         if(newInstance==null){
-            synchronized (EditorFrame.class){
+            synchronized (EditorController.class){
                 if(newInstance==null){
                     newInstance=new EditorController();
                 }
@@ -106,6 +119,42 @@ public class EditorController {
         }
         return newInstance;
     }
+
+    private void initialHandlers() {
+        handlerMap.put(MessageType.JOIN.name(),new JoinHandler(this));
+        handlerMap.put(MessageType.SYC.name(),new SycHandler(this));
+        handlerMap.put(MessageType.DELETE.name(),new DeleteHandler(this));
+        handlerMap.put(MessageType.INSET.name(),new InsertHandler(this));
+        handlerMap.put(MessageType.EXIT.name(),new ExitHandler(this));
+
+    }
+
+    /**
+     * process message
+     * @param con
+     * @param msg
+     * @return
+     */
+    public synchronized boolean process(Connection con, String msg) {
+        log.debug("received message [{}] from [{}]", msg, Configuration.socketAddress(con.getSocket()));
+
+        boolean isSucc = false;
+        try {
+            JSONObject jsonObject = JsonUtil.convertStringToJSONObject(msg);
+            String type=jsonObject.getString("type");
+            MessageHandler h = handlerMap.get(type);
+            if (h != null) {
+                isSucc = h.processMessage(jsonObject, con);
+            } else {
+                log.error("Cannot find message handler for message type [{}]", type);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isSucc;
+    }
+
+
 
     public static ConnectionListener getConnectionListener() {
         return connectionListener;

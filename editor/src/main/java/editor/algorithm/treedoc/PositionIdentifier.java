@@ -80,7 +80,7 @@ public class PositionIdentifier implements Comparable<PositionIdentifier> {
         String path2=pos.getPaths();
         int len2=path2.length();
 
-        return len1<len2&&this.getCommonPrefix(pos)>0;
+        return len1<len2&&path1.equals(path2.substring(0,len1));
     }
 
 

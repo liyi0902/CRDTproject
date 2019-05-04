@@ -1,6 +1,8 @@
 package editor.algorithm.treedoc;
 
-public class LocalDoc implements Operations {
+import editor.algorithm.Doc;
+
+public class LocalDoc extends Doc {
 
 
     public void insert(char c, PositionIdentifier pos) {
