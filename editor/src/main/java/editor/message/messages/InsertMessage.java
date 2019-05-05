@@ -1,6 +1,5 @@
 package editor.message.messages;
 
-import editor.algorithm.treedoc.PositionIdentifier;
 import editor.message.Message;
 
 public class InsertMessage<T> extends Message {

@@ -1,6 +1,6 @@
 package editor.message;
 
-import editor.algorithm.treedoc.PositionIdentifier;
+import editor.algorithm.logoot.PositionIdentifier;
 import editor.message.messages.DeleteMessage;
 import editor.message.messages.ExitMessage;
 import editor.message.messages.InsertMessage;

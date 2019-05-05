@@ -1,6 +1,5 @@
 package editor.message.messages;
 
-import editor.algorithm.treedoc.PositionIdentifier;
 import editor.message.Message;
 
 public class DeleteMessage<T> extends Message {
@@ -11,6 +10,7 @@ public class DeleteMessage<T> extends Message {
         this.type=type;
         this.pos=pos;
     }
+
 
     public String getType() {
         return type;
