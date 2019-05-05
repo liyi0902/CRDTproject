@@ -14,6 +14,12 @@ public class Identifier implements Serializable, Comparable<Identifier> {
 
     }
 
+    public Identifier(int digit,String siteId){
+        this.digit=digit;
+        this.siteId=siteId;
+
+    }
+
 
     @Override
     public int compareTo(Identifier o) {
