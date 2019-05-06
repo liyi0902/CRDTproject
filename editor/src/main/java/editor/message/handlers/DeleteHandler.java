@@ -18,4 +18,7 @@ public class DeleteHandler extends MessageHandler {
     public boolean processMessage(JSONObject json, Connection connection) {
         return false;
     }
+
+
+
 }

@@ -117,6 +117,11 @@ public class NewStrategy extends Strategy{
     }
 
     private ArrayList<Integer> add(ArrayList<Integer> l,ArrayList<Integer> inc){
+        if(l.size()==1&&l.get(0)==0){
+            l.remove(0);
+            l.add(1);
+            return l;
+        }
         if(inc.size()>l.size()){
             l.add(1);
             return l;

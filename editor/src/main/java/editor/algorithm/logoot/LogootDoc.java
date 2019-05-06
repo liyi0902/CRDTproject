@@ -1,9 +1,11 @@
 package editor.algorithm.logoot;
 
-import java.util.ArrayList;
-import java.util.Random;
+import editor.algorithm.Doc;
 
-public class LogootDoc  {
+import java.util.ArrayList;
+
+
+public class LogootDoc extends Doc {
     private int totalClock;
     private ArrayList<Atom> atoms;
 
@@ -35,7 +37,24 @@ public class LogootDoc  {
     }
 
 
+    @Override
+    public void insert(int pos,char c){
+
+    }
 
 
+    @Override
+    public void delete(int pos) {
 
+    }
+
+    @Override
+    public void remoteInsert(PositionIdentifier pos, char c) {
+
+    }
+
+    @Override
+    public void remoteDelete(PositionIdentifier pos) {
+
+    }
 }

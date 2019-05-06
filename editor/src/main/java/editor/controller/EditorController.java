@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import editor.Configuration;
+import editor.algorithm.Doc;
+import editor.algorithm.logoot.LogootDoc;
 import editor.message.Message;
 import editor.message.MessageHandler;
 import editor.message.MessageType;
@@ -33,6 +35,7 @@ public class EditorController {
     private boolean flag = false;
     private volatile static EditorController newInstance;
     private HashMap<String, MessageHandler> handlerMap;
+    private Doc doc;
 
 
     private EditorController(){
@@ -40,6 +43,7 @@ public class EditorController {
         connections = new ArrayList<Connection>();
         handlerMap=new HashMap<>();
         this.initialHandlers();
+        doc=new LogootDoc();
         if (Configuration.getRemoteHost() != null) {
             // if remote server host provided, connect to it and then wait for response to start listener.
             this.initiateConnection();
@@ -180,4 +184,7 @@ public class EditorController {
         this.flag = flag;
         connectionListener.setFlag(true);
     }
+
+
+
 }
