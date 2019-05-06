@@ -2,6 +2,7 @@ package editor.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import editor.message.messages.JoinMessage;
 
 /**
  * convert between json string to object
@@ -28,7 +29,7 @@ public class JsonUtil {
      * convert string to object
      */
 
-    public static <T> T convertJSONToObject(String data, Class<T> clzss) {
+    public static <T> T convertStringToObject(String data, Class<T> clzss) {
         try {
             T t = JSON.parseObject(data, clzss);
             return t;
@@ -69,6 +70,7 @@ public class JsonUtil {
             return null;
         }
     }
+
 
 
 

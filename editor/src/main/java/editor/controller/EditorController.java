@@ -6,7 +6,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import editor.Configuration;
 import editor.algorithm.Doc;
+import editor.algorithm.logoot.Atom;
 import editor.algorithm.logoot.LogootDoc;
+import editor.algorithm.logoot.PositionIdentifier;
 import editor.message.Message;
 import editor.message.MessageHandler;
 import editor.message.MessageType;
@@ -29,9 +31,9 @@ import java.util.Map;
 @Slf4j
 public class EditorController {
 
-    private static EditorFrame editorFrame;
-    private static ConnectionListener connectionListener;
-    private static ArrayList<Connection> connections;
+    private EditorFrame editorFrame;
+    private ConnectionListener connectionListener;
+    private ArrayList<Connection> connections;
     private boolean flag = false;
     private volatile static EditorController newInstance;
     private HashMap<String, MessageHandler> handlerMap;
@@ -160,20 +162,20 @@ public class EditorController {
 
 
 
-    public static ConnectionListener getConnectionListener() {
+    public ConnectionListener getConnectionListener() {
         return connectionListener;
     }
 
-    public static void setConnectionListener(ConnectionListener connectionListener) {
-        EditorController.connectionListener = connectionListener;
+    public void setConnectionListener(ConnectionListener connectionListener) {
+        this.connectionListener = connectionListener;
     }
 
-    public static ArrayList<Connection> getConnections() {
+    public ArrayList<Connection> getConnections() {
         return connections;
     }
 
-    public static void setConnections(ArrayList<Connection> connections) {
-        EditorController.connections = connections;
+    public void setConnections(ArrayList<Connection> connections) {
+        this.connections = connections;
     }
 
     public boolean isFlag() {
@@ -184,6 +186,21 @@ public class EditorController {
         this.flag = flag;
         connectionListener.setFlag(true);
     }
+
+
+
+
+    public Atom localInsert(int pos, char c);
+    public PositionIdentifier localDelete(int pos);
+    public int remoteInsert(PositionIdentifier pos,char c);
+
+
+    public void remoteDelete(PositionIdentifier pos){
+        int index=doc.remoteDelete(pos);
+        editorFrame.remoteDelete(index);
+    }
+
+
 
 
 
