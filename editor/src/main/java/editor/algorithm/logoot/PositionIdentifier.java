@@ -13,6 +13,9 @@ public class PositionIdentifier implements Serializable, Comparable<PositionIden
         this.clock=clock;
     }
 
+    public PositionIdentifier(){}
+
+
     public PositionIdentifier(ArrayList<Identifier> identifiers){
         this.identifiers=identifiers;
     }
