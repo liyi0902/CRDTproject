@@ -57,6 +57,16 @@ public class PositionIdentifier implements Serializable, Comparable<PositionIden
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(super.equals(obj)){
+            return true;
+        }
+        if(obj==null||this.getClass()!=obj.getClass()){
+            return false;
+        }
+        PositionIdentifier pos=(PositionIdentifier)obj;
+        return this.compareTo(pos)==0;
 
-
+    }
 }

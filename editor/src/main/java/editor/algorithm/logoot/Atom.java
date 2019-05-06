@@ -26,4 +26,8 @@ public class Atom implements Serializable {
     public void setPos(PositionIdentifier pos) {
         this.pos = pos;
     }
+
+
+
+
 }

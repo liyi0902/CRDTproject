@@ -224,6 +224,11 @@ public class EditorFrame extends JFrame {
         this.scroll = scroll;
     }
 
+    public static void main(String[] args) {
+        getInstance();
+    }
+
+
 
 }
 
