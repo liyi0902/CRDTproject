@@ -76,8 +76,9 @@ public class EditorController {
             startListener();
             Socket s = new Socket(Configuration.getRemoteHost(), Configuration.getRemotePort());
             Connection c = outgoingConnection(s);
+
             //todo syc the doc
-//            c.writeMsg();
+            c.sendJoinMessage();
 
         } catch (IOException e) {
             log.error("failed to make connection to " + Configuration.getRemoteHost() + ":" + Configuration.getRemotePort() + " :" + e);
@@ -189,10 +190,27 @@ public class EditorController {
 
 
 
+    public void localInsert(int pos, char c){
+        Atom atom=this.doc.localInsert(pos,c);
+        for(Connection con:connections){
+            con.sendInsertMessage(atom);
+        }
+    }
 
-    public Atom localInsert(int pos, char c);
-    public PositionIdentifier localDelete(int pos);
-    public int remoteInsert(PositionIdentifier pos,char c);
+
+    public void localDelete(int pos){
+        PositionIdentifier positionIdentifier=this.doc.localDelete(pos);
+        for(Connection con:connections){
+            con.sendDeleteMessage(positionIdentifier);
+        }
+    }
+
+
+
+    public void remoteInsert(PositionIdentifier pos,char c){
+        int index=doc.remoteInsert(pos,c);
+        editorFrame.remoteInsert(index,String.valueOf(c));
+    }
 
 
     public void remoteDelete(PositionIdentifier pos){

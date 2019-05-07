@@ -4,13 +4,11 @@ import editor.message.Message;
 
 public class InsertMessage<T> extends Message {
     private String type;
-    private T pos;
-    private char c;
+    private T atom;
 
-    public InsertMessage(String type,T pos,char c){
-        this.c=c;
+    public InsertMessage(String type,T atom){
         this.type=type;
-        this.pos=pos;
+        this.atom = atom;
     }
 
     public String getType() {
@@ -21,19 +19,12 @@ public class InsertMessage<T> extends Message {
         this.type = type;
     }
 
-    public T getPos() {
-        return pos;
+    public T getAtom() {
+        return atom;
     }
 
-    public void setPos(T pos) {
-        this.pos = pos;
+    public void setAtom(T atom) {
+        this.atom = atom;
     }
 
-    public char getC() {
-        return c;
-    }
-
-    public void setC(char c) {
-        this.c = c;
-    }
 }

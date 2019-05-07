@@ -15,7 +15,7 @@ public class JoinHandler extends MessageHandler {
 
     @Override
     public boolean processMessage(JSONObject json, Connection connection) {
-        return false;
+        return true;
     }
 
 

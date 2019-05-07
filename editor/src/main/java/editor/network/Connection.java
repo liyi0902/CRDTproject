@@ -3,11 +3,17 @@ package editor.network;
 
 
 import editor.Configuration;
+import editor.algorithm.logoot.Atom;
+import editor.algorithm.logoot.PositionIdentifier;
 import editor.controller.EditorController;
+import editor.message.Message;
+import editor.message.MessageGenerater;
+import editor.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 
 @Slf4j
@@ -107,4 +113,38 @@ public class Connection extends Thread {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
+
+	public void sendInsertMessage(Atom atom){
+		Message message=MessageGenerater.generateInsertMessage(atom);
+		String msg= JsonUtil.convertObjectToJSON(message);
+		this.writeMsg(msg);
+	}
+
+	public void sendDeleteMessage(PositionIdentifier pos){
+		Message message=MessageGenerater.generateDeleteMessage(pos);
+		String msg= JsonUtil.convertObjectToJSON(message);
+		this.writeMsg(msg);
+	}
+
+	public void sendExitMessage(){
+		Message message=MessageGenerater.generateExitMessage(Configuration.getProcessId());
+		String msg= JsonUtil.convertObjectToJSON(message);
+		this.writeMsg(msg);
+	}
+
+	public void sendSycMessage(ArrayList<Atom> atoms){
+		Message message=MessageGenerater.generateSycMessage(atoms);
+		String msg= JsonUtil.convertObjectToJSON(message);
+		this.writeMsg(msg);
+	}
+
+	public void sendJoinMessage(){
+		Message message= MessageGenerater.generateJoinMessage(Configuration.getProcessId());
+		String msg= JsonUtil.convertObjectToJSON(message);
+		this.writeMsg(msg);
+	}
+
+
+
 }

@@ -1,18 +1,18 @@
 package editor.message;
 
+import editor.algorithm.logoot.Atom;
 import editor.algorithm.logoot.PositionIdentifier;
-import editor.message.messages.DeleteMessage;
-import editor.message.messages.ExitMessage;
-import editor.message.messages.InsertMessage;
-import editor.message.messages.JoinMessage;
+import editor.message.messages.*;
+
+import java.util.ArrayList;
 
 public class MessageGenerater {
-    public static Message generateInsertMessage(PositionIdentifier pos,char c){
-        return new InsertMessage<PositionIdentifier>(MessageType.INSET.name(),pos,c);
+    public static Message generateInsertMessage(Atom atom){
+        return new InsertMessage<>(MessageType.INSET.name(),atom);
     }
 
     public static Message generateDeleteMessage(PositionIdentifier pos){
-        return new DeleteMessage<PositionIdentifier>(MessageType.DELETE.name(),pos);
+        return new DeleteMessage<>(MessageType.DELETE.name(),pos);
     }
 
     public static Message generateJoinMessage(String id){
@@ -22,5 +22,10 @@ public class MessageGenerater {
     public static Message generateExitMessage(String id){
         return new ExitMessage(MessageType.EXIT.name(),id);
     }
+
+    public static Message generateSycMessage(ArrayList<Atom> atoms){
+        return new SycMessage<>(MessageType.SYC.name(),atoms);
+    }
+
 
 }

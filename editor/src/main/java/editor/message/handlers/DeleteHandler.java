@@ -21,9 +21,10 @@ public class DeleteHandler extends MessageHandler {
     public boolean processMessage(JSONObject json, Connection connection) {
         String msg=json.toJSONString();
         for(Connection c:this.editorController.getConnections()){
-            c.writeMsg(msg);
+            if(c!=connection){
+                c.writeMsg(msg);
+            }
         }
-
         DeleteMessage<PositionIdentifier> deleteMessage= JsonUtil.convertJSONToObject(json,DeleteMessage.class);
         PositionIdentifier pos=deleteMessage.getPos();
         editorController.remoteDelete(pos);
