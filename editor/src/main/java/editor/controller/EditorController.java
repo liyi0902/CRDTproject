@@ -188,7 +188,13 @@ public class EditorController {
         connectionListener.setFlag(true);
     }
 
+    public EditorFrame getEditorFrame() {
+        return editorFrame;
+    }
 
+    public void setEditorFrame(EditorFrame editorFrame) {
+        this.editorFrame = editorFrame;
+    }
 
     public void localInsert(int pos, char c){
         Atom atom=this.doc.localInsert(pos,c);

@@ -29,8 +29,6 @@ public class LogootDoc extends Doc {
     }
 
 
-
-
     /**
      * local insert a character
      * @param pos
@@ -128,4 +126,8 @@ public class LogootDoc extends Doc {
         }
         return -1;
     }
+
+
+
+
 }
