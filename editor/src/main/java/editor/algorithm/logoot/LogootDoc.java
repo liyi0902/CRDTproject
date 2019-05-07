@@ -40,17 +40,21 @@ public class LogootDoc extends Doc {
 
         ArrayList<Identifier> before;
         ArrayList<Identifier> after;
-        if(pos==0){
+        if(atoms.size()==0){
             before=new ArrayList<>();
-            after=atoms.get(pos+1).getPos().getIdentifiers();
-        }
-        if(pos==atoms.size()){
             after=new ArrayList<>();
+        }
+        else if(pos==0){
+            before=new ArrayList<>();
+            after=atoms.get(pos).getPos().getIdentifiers();
+        }
+        else if(pos==atoms.size()){
             before=atoms.get(pos-1).getPos().getIdentifiers();
+            after=new ArrayList<>();
         }
         else {
             before=atoms.get(pos-1).getPos().getIdentifiers();
-            after=atoms.get(pos+1).getPos().getIdentifiers();
+            after=atoms.get(pos).getPos().getIdentifiers();
         }
 
         PositionIdentifier current=new PositionIdentifier();
