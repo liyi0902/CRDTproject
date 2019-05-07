@@ -48,6 +48,8 @@ public abstract class Strategy {
                 res.add(new Identifier(digit));
             }
         }
+        System.out.println("show digits: "+getDigits(res,res.size()));
+
         return res;
 
     }

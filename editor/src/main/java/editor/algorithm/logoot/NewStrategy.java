@@ -12,6 +12,9 @@ public class NewStrategy extends Strategy{
 
     @Override
     public ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q) throws Exception{
+        System.out.println("p size"+p.size());
+        System.out.println("q size"+q.size());
+
         Identifier head1;
         Identifier head2;
         if(p.size()!=0){
@@ -30,6 +33,9 @@ public class NewStrategy extends Strategy{
         if(head1.getDigit()!=head2.getDigit()){
             ArrayList<Integer> l1=super.getDigits(p,p.size());
             ArrayList<Integer> l2=super.getDigits(q,q.size());
+            System.out.println("l1 :"+l1.toString());
+            System.out.println("l2 :"+l2.toString());
+
             ArrayList<Integer> delta=subtractGreaterThan(l2,l1);
             ArrayList<Integer> next=increment(l1,delta);
             return super.constructPosition(next,p,q);
@@ -58,30 +64,56 @@ public class NewStrategy extends Strategy{
 
 
     private ArrayList<Integer> subtractGreaterThan(ArrayList<Integer> l1,ArrayList<Integer> l2){
+
+        int i1=Integer.MAX_VALUE;
+        int i2=0;
         ArrayList<Integer> delta=new ArrayList<>();
         int len1=l1.size();
         int len2=l2.size();
         int size=Math.max(len1,len2);
-        StringBuilder sb1=new StringBuilder();
-        StringBuilder sb2=new StringBuilder();
-        for(int i=0;i<size;i++){
-            if(i<len1&&i<len2){
-                sb1.append(l1.get(i));
-                sb2.append(l2.get(i));
+
+        if(len1>0&&len2>0){
+            StringBuilder sb1=new StringBuilder();
+            StringBuilder sb2=new StringBuilder();
+            for(int i=0;i<size;i++){
+                if(i<len1&&i<len2){
+                    sb1.append(l1.get(i));
+                    sb2.append(l2.get(i));
+                }
+                else if(i>=len1){
+                    l1.add(0);
+                    sb1.append(0);
+                    sb2.append(l2.get(i));
+                }
+                else {
+                    l2.add(0);
+                    sb1.append(l1.get(i));
+                    sb2.append(0);
+                }
             }
-            else if(i>=len1){
-                l1.add(0);
-                sb1.append(0);
-                sb2.append(l2.get(i));
-            }
-            else {
-                l2.add(0);
-                sb1.append(l1.get(i));
-                sb2.append(0);
-            }
+            i1=Integer.valueOf(sb1.toString());
+            i2=Integer.valueOf(sb2.toString());
         }
-        int i1=Integer.valueOf(sb1.toString());
-        int i2=Integer.valueOf(sb2.toString());
+
+        if(len1>0&&len2==0){
+            StringBuilder sb1=new StringBuilder();
+            for(int i=0;i<len1;i++){
+                sb1.append(l1.get(i));
+            }
+            i1=Integer.valueOf(sb1.toString());
+        }
+        if(len1==0&&len2>0){
+            StringBuilder sb2=new StringBuilder();
+            for(int i=0;i<len2;i++){
+                sb2.append(l2.get(i));
+            }
+            i2=Integer.valueOf(sb2.toString());
+        }
+
+
+        System.out.println("i1:"+i1);
+        System.out.println("i2:"+i2);
+
 
         String dif=String.valueOf(i1-i2);
         for(int i=0;i<size-dif.length();i++){
@@ -96,6 +128,8 @@ public class NewStrategy extends Strategy{
     }
 
     private ArrayList<Integer> increment(ArrayList<Integer> l,ArrayList<Integer> delta){
+        System.out.println("delta:"+delta.toString());
+        System.out.println("l:"+l.toString());
 
         ArrayList<Integer> inc=new ArrayList<>();
         for(int i=0;i<delta.size();i++){
@@ -112,16 +146,22 @@ public class NewStrategy extends Strategy{
         if(v1.get(v1.size()-1)==0){
             v1=add(v1,inc);
         }
+        System.out.println("v1:"+v1.toString());
         return v1;
 
     }
 
     private ArrayList<Integer> add(ArrayList<Integer> l,ArrayList<Integer> inc){
-        if(l.size()==1&&l.get(0)==0){
-            l.remove(0);
+        if(l.size()==0){
+            l.add(0);
             l.add(1);
             return l;
         }
+//        if(l.size()==1&&l.get(0)==0){
+////            l.remove(0);
+//            l.add(1);
+//            return l;
+//        }
         if(inc.size()>l.size()){
             l.add(1);
             return l;

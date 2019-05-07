@@ -38,6 +38,7 @@ public class LogootDoc extends Doc {
     public synchronized Atom localInsert(int pos,char c){
         //may have bug，need test
 
+        System.out.println("atoms size: "+atoms.size());
         ArrayList<Identifier> before;
         ArrayList<Identifier> after;
         if(atoms.size()==0){
@@ -66,6 +67,8 @@ public class LogootDoc extends Doc {
             e.printStackTrace();
         }
         this.setTotalClock(this.getTotalClock()+1);
+
+        this.insert(current,c);
         return new Atom(c,current);
 
     }
