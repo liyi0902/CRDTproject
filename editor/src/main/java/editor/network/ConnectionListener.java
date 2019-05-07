@@ -14,12 +14,28 @@ public class ConnectionListener extends Thread{
 	private ServerSocket serverSocket=null;
 	private int port;
 	private boolean flag = false;
+	private volatile static ConnectionListener newInstance;
 
-	public ConnectionListener() throws IOException{
+	private ConnectionListener() throws IOException{
 		port = Configuration.getLocalPort();
 		serverSocket = new ServerSocket(port);
 		start();
 	}
+
+	public static ConnectionListener getInstance() throws IOException{
+		if(newInstance==null){
+			synchronized (EditorController.class){
+				if(newInstance==null){
+					newInstance=new ConnectionListener();
+				}
+			}
+		}
+		return newInstance;
+	}
+
+
+
+
 
 	@Override
 	public void run() {

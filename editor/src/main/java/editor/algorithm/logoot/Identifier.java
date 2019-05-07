@@ -50,6 +50,11 @@ public class Identifier implements Serializable, Comparable<Identifier> {
         this.siteId = siteId;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Identifier{" +
+                "digit=" + digit +
+                ", siteId='" + siteId + '\'' +
+                '}';
+    }
 }

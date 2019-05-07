@@ -37,11 +37,25 @@ public class LogootDoc extends Doc {
     @Override
     public synchronized Atom localInsert(int pos,char c){
         //may have bug，need test
-        PositionIdentifier before=atoms.get(pos-1).getPos();
-        PositionIdentifier after=atoms.get(pos+1).getPos();
+
+        ArrayList<Identifier> before;
+        ArrayList<Identifier> after;
+        if(pos==0){
+            before=new ArrayList<>();
+            after=atoms.get(pos+1).getPos().getIdentifiers();
+        }
+        if(pos==atoms.size()){
+            after=new ArrayList<>();
+            before=atoms.get(pos-1).getPos().getIdentifiers();
+        }
+        else {
+            before=atoms.get(pos-1).getPos().getIdentifiers();
+            after=atoms.get(pos+1).getPos().getIdentifiers();
+        }
+
         PositionIdentifier current=new PositionIdentifier();
         try {
-            ArrayList<Identifier> list=strategy.generatePositionIdentifiers(before.getIdentifiers(),after.getIdentifiers());
+            ArrayList<Identifier> list=strategy.generatePositionIdentifiers(before,after);
             current.setClock(this.getTotalClock());
             current.setIdentifiers(list);
         }catch (Exception e){
@@ -125,6 +139,10 @@ public class LogootDoc extends Doc {
             }
         }
         return -1;
+    }
+
+    public void showAtoms(){
+        System.out.println(atoms.toString());
     }
 
 

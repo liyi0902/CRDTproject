@@ -1,6 +1,7 @@
 package editor.view.listeners;
 
 
+import editor.algorithm.logoot.LogootDoc;
 import editor.controller.EditorController;
 import editor.view.EditorFrame;
 
@@ -31,6 +32,8 @@ public class MyKeyBoardListener extends KeyAdapter {
             System.out.println("[add],pos=" + pos + ",char=" + c);
             editorController.localInsert(pos,c);
         }
+        ((LogootDoc)editorController.getDoc()).showAtoms();
+
     }
 
     @Override

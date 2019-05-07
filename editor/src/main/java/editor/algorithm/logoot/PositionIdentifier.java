@@ -72,4 +72,19 @@ public class PositionIdentifier implements Serializable, Comparable<PositionIden
         return this.compareTo(pos)==0;
 
     }
+
+
+    public void showIdentifierList(){
+        System.out.println(identifiers.toString());
+    }
+
+    public void showDigitList(){
+        ArrayList<Integer> list=new ArrayList<>();
+        for(Identifier i:identifiers){
+            list.add(i.getDigit());
+        }
+        System.out.println(list.toString());
+    }
+
+
 }

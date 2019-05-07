@@ -53,6 +53,7 @@ public class EditorController {
             this.startListener();
         }
 
+
     }
 
     /**
@@ -60,8 +61,9 @@ public class EditorController {
      */
     public void startListener() {
         try {
-            ConnectionListener connectionListener = new ConnectionListener();
+            ConnectionListener connectionListener = ConnectionListener.getInstance();
         } catch (IOException e) {
+            e.printStackTrace();
             log.error("failed to startup a listening thread: " + e);
             System.exit(-1);
         }
@@ -196,6 +198,14 @@ public class EditorController {
         this.editorFrame = editorFrame;
     }
 
+    public Doc getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Doc doc) {
+        this.doc = doc;
+    }
+
     public void localInsert(int pos, char c){
         Atom atom=this.doc.localInsert(pos,c);
         for(Connection con:connections){
@@ -210,6 +220,7 @@ public class EditorController {
             con.sendDeleteMessage(positionIdentifier);
         }
     }
+
 
 
 
