@@ -1,70 +1,107 @@
-//package editor.algorithm.logoot;
-//
-//import java.util.ArrayList;
-//import java.util.Random;
-//
-///**
-// * use the method in original paper to generate
-// */
-//public class OriginalStrategy extends Strategy{
-//
-////    @Override
-////    public ArrayList<PositionIdentifier> generatePositionIdentifiers(PositionIdentifier p, PositionIdentifier q, int n){
-////        ArrayList<PositionIdentifier> list=new ArrayList<>(n);
-////        int index = 0;
-////        int interval = 0;
-////        while (interval < n) {
-////            index++;
-////            interval = prefix(q, index) - prefix(p, index);
-////        }
-////        int step = interval / n;
-////        int r = prefix(p, index);
-////        for (int j = 0; j < n; j++) {
-////            list.add(construct(r + new Random().nextInt(step) + 1, p, q));
-////            r = r + step;
-////        }
-////        return list;
-////    }
-//
-//
-////    private int prefix(ArrayList<Identifier> p, int i) {
-////        StringBuilder s = new StringBuilder();
-////        for (int j = 0; j < i; j++) {
-////            if (j < p.size())
-////                digits = digits + p.get(j).getDigit();
-////            else
-////                digits = digits + "0";
-////        }
-////        return Integer.parseInt(digits);
-////
-////
-////
-////    }
-//
-//
-//
-//
-////    @Override
-////    ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q) throws Exception {
-////        ArrayList<Identifier> list=new ArrayList<>(1);
-////        int index = 0;
-////        int interval = 0;
-////        while (interval == 0) {
-////            index++;
-////            interval = prefix(q, index) - prefix(p, index);
-////        }
-////        int step = interval;
-////        int r = prefix(p, index);
-////        for (int j = 0; j < n; j++) {
-////            list.add(construct(r + new Random().nextInt(step) + 1, p, q));
-////            r = r + step;
-////        }
-////        list=constructPosition()
-////
-////        return list;
-////
-////    }
-//
-//
-//
-//}
+package editor.algorithm.logoot;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/**
+ * use the method in "Logoot-Undo: Distributed Collaborative Editing System on P2P networks" papaer.
+ * but i think this paper has some problems, so modify some part of the method
+ */
+public class OriginalStrategy extends Strategy{
+
+
+    /**
+     * set default bound =5
+     * @param p
+     * @param q
+     * @return
+     * @throws Exception
+     */
+    @Override
+    ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q) throws Exception {
+        return this.generatePositionIdentifiers(p,q,5);
+    }
+
+    /**
+     * to generate the Identifier list for new atom
+     * in the original paper, there is an argument n that means we can generate n ArrayList,
+     * but in our project,we only generate one arraylist at a time.
+     * @param p
+     * @param q
+     * @param bound
+     * @return
+     * @throws Exception
+     */
+    @Override
+    ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q,int bound) {
+        System.out.println("before"+p.toString());
+        System.out.println("after"+q.toString());
+        int index=0;
+        int interval=0;
+        int min=Math.min(p.size(),q.size());
+
+        // to find the index that two  Identifier at this index are not equals
+        while ((index<min&&p.get(index).equals(q.get(index)))||(p.size()<=index&&q.size()>index&&q.get(index).getDigit()==0)){
+            index++;
+        }
+        interval=getDigit(q,index)-getDigit(p,index);
+        int step=interval;
+
+
+        //interval>0 means the two digit of p and q are like 100 102, so we can generate 101 between then
+        if(interval>1){
+            //limit the step make it less than bound
+            step=Math.min(bound,interval);
+        }
+        //means we need another index to diff p and q
+        else{
+            while (interval<=1){
+                index++;
+                interval=Integer.MAX_VALUE-getDigit(p,index);
+            }
+            step=Math.min(interval,bound);
+
+        }
+
+        ArrayList<Integer> digits=getDigits(p,index);
+
+        increment(digits,step);
+        return constructPosition(digits,p,q);
+
+
+    }
+
+    private ArrayList<Integer> increment(ArrayList<Integer> digits,int interval){
+        int step=new Random().nextInt(interval)+1;
+        int last=digits.get(digits.size()-1);
+        digits.set(digits.size()-1,last+step);
+        return digits;
+
+    }
+
+    public static void main(String[] args) {
+        LogootDoc logootDoc=new LogootDoc();
+        Identifier i1=new Identifier(131,"1");
+        Identifier i2=new Identifier(2471,"5");
+        Identifier i3=new Identifier(131,"3");
+        Identifier i4=new Identifier(2472,"3");
+        Identifier i5=new Identifier(6,"3");
+        Identifier i6=new Identifier(223,"31");
+        ArrayList<Identifier> a1=new ArrayList<>();
+        ArrayList<Identifier> a2=new ArrayList<>();
+        a1.add(i1);
+        a1.add(i2);
+//        a1.add(i6);
+        a2.add(i1);
+        a2.add(i4);
+//        a2.add(i3);
+        System.out.println(a1.toString());
+        System.out.println(a2.toString());
+        ArrayList<Identifier> arrayList=logootDoc.getStrategy().generatePositionIdentifiers(a1,a2,5);
+        System.out.println(arrayList.toString());
+
+    }
+
+
+
+}

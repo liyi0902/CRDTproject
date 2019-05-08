@@ -28,6 +28,11 @@ public class Atom implements Serializable {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Atom{" +
+                "c=" + c +
+                ", pos=" + pos +
+                '}';
+    }
 }

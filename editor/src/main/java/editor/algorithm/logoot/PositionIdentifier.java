@@ -86,5 +86,11 @@ public class PositionIdentifier implements Serializable, Comparable<PositionIden
         System.out.println(list.toString());
     }
 
-
+    @Override
+    public String toString() {
+        return "PositionIdentifier{" +
+                "identifiers=" + identifiers +
+                ", clock=" + clock +
+                '}';
+    }
 }

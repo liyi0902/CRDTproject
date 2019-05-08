@@ -57,4 +57,17 @@ public class Identifier implements Serializable, Comparable<Identifier> {
                 ", siteId='" + siteId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(super.equals(obj)){
+            return true;
+        }
+        if(obj==null||this.getClass()!=obj.getClass()){
+            return false;
+        }
+        Identifier identifier=(Identifier)obj;
+        return this.compareTo(identifier)==0;
+
+    }
 }

@@ -16,7 +16,7 @@ public class LogootDoc extends Doc {
     public LogootDoc(){
         this.totalClock=0;
         this.atoms=new ArrayList<>();
-        this.useNewStrategy();
+        this.useOriginalStrategy();
     }
 
 
@@ -38,20 +38,24 @@ public class LogootDoc extends Doc {
     public synchronized Atom localInsert(int pos,char c){
         //may have bug，need test
 
-        System.out.println("atoms size: "+atoms.size());
+//        System.out.println("atoms size: "+atoms.size());
         ArrayList<Identifier> before;
         ArrayList<Identifier> after;
         if(atoms.size()==0){
             before=new ArrayList<>();
+            before.add(new Identifier(0,"0"));
             after=new ArrayList<>();
+            after.add(new Identifier(Integer.MAX_VALUE,"0"));
         }
         else if(pos==0){
             before=new ArrayList<>();
+            before.add(new Identifier(0,"0"));
             after=atoms.get(pos).getPos().getIdentifiers();
         }
         else if(pos==atoms.size()){
             before=atoms.get(pos-1).getPos().getIdentifiers();
             after=new ArrayList<>();
+            after.add(new Identifier(Integer.MAX_VALUE,"0"));
         }
         else {
             before=atoms.get(pos-1).getPos().getIdentifiers();
@@ -60,7 +64,7 @@ public class LogootDoc extends Doc {
 
         PositionIdentifier current=new PositionIdentifier();
         try {
-            ArrayList<Identifier> list=strategy.generatePositionIdentifiers(before,after);
+            ArrayList<Identifier> list=strategy.generatePositionIdentifiers(before,after,5);
             current.setClock(this.getTotalClock());
             current.setIdentifiers(list);
         }catch (Exception e){
@@ -69,9 +73,12 @@ public class LogootDoc extends Doc {
         this.setTotalClock(this.getTotalClock()+1);
 
         this.insert(current,c);
+        System.out.println(current.toString());
         return new Atom(c,current);
 
     }
+
+
 
 
     /**
@@ -153,14 +160,26 @@ public class LogootDoc extends Doc {
     }
 
     private void useOriginalStrategy(){
-        this.strategy=new NewStrategy();
-    }
-
-    private void useNewStrategy(){
         this.strategy=new OriginalStrategy();
     }
 
+    private void useNewStrategy(){
+        this.strategy=new NewStrategy();
+    }
 
+    public ArrayList<Atom> getAtoms() {
+        return atoms;
+    }
 
+    public void setAtoms(ArrayList<Atom> atoms) {
+        this.atoms = atoms;
+    }
 
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
+    }
 }

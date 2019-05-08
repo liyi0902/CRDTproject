@@ -27,12 +27,12 @@ public class NewStrategy extends Strategy{
             head2=q.get(0);
         }
         else {
-            head2=new Identifier(Integer.MAX_VALUE);
+            head2=new Identifier(10);
         }
 
         if(head1.getDigit()!=head2.getDigit()){
-            ArrayList<Integer> l1=super.getDigits(p,p.size());
-            ArrayList<Integer> l2=super.getDigits(q,q.size());
+            ArrayList<Integer> l1=super.getDigits(p,p.size()-1);
+            ArrayList<Integer> l2=super.getDigits(q,q.size()-1);
             System.out.println("l1 :"+l1.toString());
             System.out.println("l2 :"+l2.toString());
 
@@ -153,7 +153,6 @@ public class NewStrategy extends Strategy{
 
     private ArrayList<Integer> add(ArrayList<Integer> l,ArrayList<Integer> inc){
         if(l.size()==0){
-            l.add(0);
             l.add(1);
             return l;
         }
@@ -194,6 +193,8 @@ public class NewStrategy extends Strategy{
         return res;
     }
 
-
-
+    @Override
+    ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q, int bound)  {
+        return null;
+    }
 }
