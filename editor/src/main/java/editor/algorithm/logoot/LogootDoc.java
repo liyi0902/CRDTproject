@@ -16,7 +16,7 @@ public class LogootDoc extends Doc {
     public LogootDoc(){
         this.totalClock=0;
         this.atoms=new ArrayList<>();
-        this.strategy=new NewStrategy();
+        this.useNewStrategy();
     }
 
 
@@ -150,6 +150,14 @@ public class LogootDoc extends Doc {
 
     public void showAtoms(){
         System.out.println(atoms.toString());
+    }
+
+    private void useOriginalStrategy(){
+        this.strategy=new NewStrategy();
+    }
+
+    private void useNewStrategy(){
+        this.strategy=new OriginalStrategy();
     }
 
 

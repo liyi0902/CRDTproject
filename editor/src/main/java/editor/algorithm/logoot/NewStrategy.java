@@ -63,10 +63,10 @@ public class NewStrategy extends Strategy{
     }
 
 
-    private ArrayList<Integer> subtractGreaterThan(ArrayList<Integer> l1,ArrayList<Integer> l2){
+    private ArrayList<Integer> subtractGreaterThan(ArrayList<Integer> l2,ArrayList<Integer> l1){
 
-        int i1=Integer.MAX_VALUE;
-        int i2=0;
+        int i1=0;
+        int i2=Integer.MAX_VALUE;
         ArrayList<Integer> delta=new ArrayList<>();
         int len1=l1.size();
         int len2=l2.size();
@@ -115,7 +115,7 @@ public class NewStrategy extends Strategy{
         System.out.println("i2:"+i2);
 
 
-        String dif=String.valueOf(i1-i2);
+        String dif=String.valueOf(i2-i1);
         for(int i=0;i<size-dif.length();i++){
             delta.add(0);
         }
@@ -123,12 +123,12 @@ public class NewStrategy extends Strategy{
             delta.add(Integer.parseInt(String.valueOf(dif.charAt(i))));
         }
 
+        System.out.println("delta:"+delta.toString());
         return delta;
 
     }
 
     private ArrayList<Integer> increment(ArrayList<Integer> l,ArrayList<Integer> delta){
-        System.out.println("delta:"+delta.toString());
         System.out.println("l:"+l.toString());
 
         ArrayList<Integer> inc=new ArrayList<>();
@@ -157,11 +157,7 @@ public class NewStrategy extends Strategy{
             l.add(1);
             return l;
         }
-//        if(l.size()==1&&l.get(0)==0){
-////            l.remove(0);
-//            l.add(1);
-//            return l;
-//        }
+
         if(inc.size()>l.size()){
             l.add(1);
             return l;

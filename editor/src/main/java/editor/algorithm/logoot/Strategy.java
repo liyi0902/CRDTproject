@@ -54,6 +54,10 @@ public abstract class Strategy {
 
     }
 
+
+
+
+
     public ArrayList<Integer> getDigits(ArrayList<Identifier> identifiers,int index){
         ArrayList<Integer> list=new ArrayList<>();
         int len=identifiers.size();
