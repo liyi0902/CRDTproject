@@ -43,19 +43,19 @@ public class LogootDoc extends Doc {
         ArrayList<Identifier> after;
         if(atoms.size()==0){
             before=new ArrayList<>();
-            before.add(new Identifier(0,"0"));
+            before.add(new Identifier(0,""));
             after=new ArrayList<>();
-            after.add(new Identifier(Integer.MAX_VALUE,"0"));
+            after.add(new Identifier(Integer.MAX_VALUE,""));
         }
         else if(pos==0){
             before=new ArrayList<>();
-            before.add(new Identifier(0,"0"));
+            before.add(new Identifier(0,""));
             after=atoms.get(pos).getPos().getIdentifiers();
         }
         else if(pos==atoms.size()){
             before=atoms.get(pos-1).getPos().getIdentifiers();
             after=new ArrayList<>();
-            after.add(new Identifier(Integer.MAX_VALUE,"0"));
+            after.add(new Identifier(Integer.MAX_VALUE,""));
         }
         else {
             before=atoms.get(pos-1).getPos().getIdentifiers();

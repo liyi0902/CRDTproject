@@ -20,7 +20,6 @@ public class Identifier implements Serializable, Comparable<Identifier> {
 
     }
 
-
     @Override
     public int compareTo(Identifier o) {
         if(this.digit<o.getDigit()){

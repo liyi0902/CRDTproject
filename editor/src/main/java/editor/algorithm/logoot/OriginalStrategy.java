@@ -44,24 +44,25 @@ public class OriginalStrategy extends Strategy{
         while ((index<min&&p.get(index).equals(q.get(index)))||(p.size()<=index&&q.size()>index&&q.get(index).getDigit()==0)){
             index++;
         }
-        interval=getDigit(q,index)-getDigit(p,index);
+        interval=getDigit(q,index)-getDigit(p,index)-1;
         int step=interval;
 
 
         //interval>0 means the two digit of p and q are like 100 102, so we can generate 101 between then
-        if(interval>1){
+        if(interval>=1){
             //limit the step make it less than bound
             step=Math.min(bound,interval);
         }
         //means we need another index to diff p and q
         else{
-            while (interval<=1){
+            while (interval<1){
                 index++;
                 interval=Integer.MAX_VALUE-getDigit(p,index);
             }
             step=Math.min(interval,bound);
 
         }
+        System.out.println("step: "+step);
 
         ArrayList<Integer> digits=getDigits(p,index);
 
@@ -81,8 +82,8 @@ public class OriginalStrategy extends Strategy{
 
     public static void main(String[] args) {
         LogootDoc logootDoc=new LogootDoc();
-        Identifier i1=new Identifier(131,"1");
-        Identifier i2=new Identifier(2471,"5");
+        Identifier i1=new Identifier(0,"0");
+        Identifier i2=new Identifier(2,"31d0ffd72cc447c288b9d2434a91bb0b");
         Identifier i3=new Identifier(131,"3");
         Identifier i4=new Identifier(2472,"3");
         Identifier i5=new Identifier(6,"3");
@@ -90,15 +91,15 @@ public class OriginalStrategy extends Strategy{
         ArrayList<Identifier> a1=new ArrayList<>();
         ArrayList<Identifier> a2=new ArrayList<>();
         a1.add(i1);
-        a1.add(i2);
+//        a1.add(i2);
 //        a1.add(i6);
-        a2.add(i1);
-        a2.add(i4);
+        a2.add(i2);
+//        a2.add(i4);
 //        a2.add(i3);
         System.out.println(a1.toString());
         System.out.println(a2.toString());
         ArrayList<Identifier> arrayList=logootDoc.getStrategy().generatePositionIdentifiers(a1,a2,5);
-        System.out.println(arrayList.toString());
+        System.out.println("arraylist"+arrayList.toString());
 
     }
 
