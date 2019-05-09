@@ -10,7 +10,6 @@ import editor.network.Connection;
 import editor.utils.JsonUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SycHandler extends MessageHandler {
 
@@ -26,7 +25,7 @@ public class SycHandler extends MessageHandler {
         SycMessage<ArrayList<Atom>> sycMessage= JsonUtil.convertJSONToObject(json,new TypeReference<SycMessage<ArrayList<Atom>>>(){});
 
         System.out.println(sycMessage.toString());
-        ArrayList<Atom> atoms=sycMessage.getAtom();
+        ArrayList<Atom> atoms=sycMessage.getData();
         System.out.println("recevie atoms size"+atoms.size());
         editorController.sycData(atoms);
 

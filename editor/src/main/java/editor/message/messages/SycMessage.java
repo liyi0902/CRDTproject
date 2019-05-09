@@ -4,11 +4,11 @@ import editor.message.Message;
 
 public class SycMessage<T> extends Message {
     private String type;
-    private T atoms;
+    private T data;
 
-    public SycMessage(String type,T atom){
+    public SycMessage(String type,T data){
         this.type=type;
-        this.atoms = atom;
+        this.data = data;
     }
 
     public String getType() {
@@ -19,19 +19,19 @@ public class SycMessage<T> extends Message {
         this.type = type;
     }
 
-    public T getAtom() {
-        return atoms;
+    public T getData() {
+        return data;
     }
 
-    public void setAtom(T atom) {
-        this.atoms = atom;
+    public void setData(T data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "SycMessage{" +
                 "type='" + type + '\'' +
-                ", atom=" + atoms +
+                ", data=" + data +
                 '}';
     }
 }
