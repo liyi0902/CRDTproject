@@ -89,6 +89,7 @@ public class LogootDoc extends Doc {
     @Override
     public synchronized PositionIdentifier localDelete(int pos) {
         //may has bug，need test
+        System.out.println("Remove pos= "+pos);
         return atoms.remove(pos).getPos();
 
     }

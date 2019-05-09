@@ -11,6 +11,13 @@ public abstract class Strategy {
     abstract ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q,int bound) ;
 
 
+    /**
+     * use the integer list to consruct Identifier list for a new PositionIdentifier, the same to the method in paper
+     * @param next
+     * @param p
+     * @param q
+     * @return
+     */
     public ArrayList<Identifier> constructPosition(ArrayList<Integer> next,ArrayList<Identifier> p, ArrayList<Identifier> q){
         ArrayList<Identifier> res=new ArrayList<>();
         for(int i=0;i<next.size();i++){
@@ -35,8 +42,6 @@ public abstract class Strategy {
         return res;
 
     }
-
-
 
 
 

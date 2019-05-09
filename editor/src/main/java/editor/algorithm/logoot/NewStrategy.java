@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /**
  * use a new method get from http://digitalfreepen.com/2017/10/06/simple-real-time-collaborative-text-editor.html
  * to generate PositionIdentifier
+ * This class is not used again since some problems
  */
 public class NewStrategy extends Strategy{
 
