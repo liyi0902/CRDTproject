@@ -36,10 +36,29 @@ public class MyKeyBoardListener extends KeyAdapter {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //Returns the position of the text insertion caret for the text component.
-        int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
+    /**
+     * can't unstand why type "enter" the pos will plus 2
+     * @param e
+     */
 
-    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+////        Returns the position of the text insertion caret for the text component.
+//        int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
+//        System.out.println(pos);
+//
+//
+//        if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+//            pos -= 1;
+//            System.out.println("[delete],pos=" + pos);
+//            editorController.localDelete(pos);
+//        } else {
+//            char c = e.getKeyChar();
+//            System.out.println("[add],pos=" + pos + ",char=" + c);
+//            editorController.localInsert(pos,c);
+//        }
+//        ((LogootDoc)editorController.getDoc()).showAtoms();
+//
+//
+//    }
 }
