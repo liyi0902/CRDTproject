@@ -10,6 +10,7 @@ import editor.algorithm.logoot.PositionIdentifier;
 import editor.controller.EditorController;
 import editor.message.MessageHandler;
 import editor.message.messages.InsertMessage;
+import editor.message.messages.SycMessage;
 import editor.network.Connection;
 import editor.utils.JsonUtil;
 
@@ -32,6 +33,9 @@ public class InsertHandler extends MessageHandler {
         System.out.println("json:"+json.toJSONString());
 
         InsertMessage<Atom> insertMessage=JsonUtil.convertJSONToObject(json,new TypeReference<InsertMessage<Atom>>(){});
+
+
+        System.out.println(insertMessage.toString());
 
 
         PositionIdentifier pos=insertMessage.getAtom().getPos();

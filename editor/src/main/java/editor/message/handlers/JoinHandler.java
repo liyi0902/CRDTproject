@@ -2,9 +2,15 @@ package editor.message.handlers;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
+import editor.algorithm.logoot.Atom;
 import editor.controller.EditorController;
 import editor.message.MessageHandler;
+import editor.message.MessageType;
+import editor.message.messages.InsertMessage;
+import editor.message.messages.SycMessage;
 import editor.network.Connection;
+
+import java.util.ArrayList;
 
 public class JoinHandler extends MessageHandler {
     private EditorController editorController;
@@ -15,6 +21,11 @@ public class JoinHandler extends MessageHandler {
 
     @Override
     public boolean processMessage(JSONObject json, Connection connection) {
+
+        System.out.println(1);
+        ArrayList<Atom> atoms=editorController.getDoc().getAtoms();
+        System.out.println("atoms size"+atoms.size());
+        connection.sendSycMessage(atoms);
 
         return true;
     }

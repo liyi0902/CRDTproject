@@ -156,6 +156,12 @@ public class LogootDoc extends Doc {
         return -1;
     }
 
+    public void syc(ArrayList<Atom> atoms){
+        this.setAtoms(atoms);
+    }
+
+
+
     public void showAtoms(){
         System.out.println(atoms.toString());
     }
@@ -183,4 +189,6 @@ public class LogootDoc extends Doc {
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
+
+
 }

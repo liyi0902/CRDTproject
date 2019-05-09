@@ -5,6 +5,7 @@ import editor.algorithm.logoot.PositionIdentifier;
 import editor.message.messages.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MessageGenerater {
     public static Message generateInsertMessage(Atom atom){
@@ -24,6 +25,10 @@ public class MessageGenerater {
     }
 
     public static Message generateSycMessage(ArrayList<Atom> atoms){
+//        HashMap<Integer,Atom> map=new HashMap<>();
+//        for(int i=0;i<atoms.size();i++){
+//            map.put(i,atoms.get(i));
+//        }
         return new SycMessage<>(MessageType.SYC.name(),atoms);
     }
 

@@ -27,4 +27,11 @@ public class InsertMessage<T> extends Message {
         this.atom = atom;
     }
 
+    @Override
+    public String toString() {
+        return "InsertMessage{" +
+                "type='" + type + '\'' +
+                ", atom=" + atom +
+                '}';
+    }
 }

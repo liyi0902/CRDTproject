@@ -37,7 +37,7 @@ public class EditorController {
     private boolean flag = false;
     private volatile static EditorController newInstance;
     private HashMap<String, MessageHandler> handlerMap;
-    private Doc doc;
+    private LogootDoc doc;
 
 
     private EditorController(){
@@ -199,15 +199,15 @@ public class EditorController {
         this.editorFrame = editorFrame;
     }
 
-    public Doc getDoc() {
+    public LogootDoc getDoc() {
         return doc;
     }
 
-    public void setDoc(Doc doc) {
+    public void setDoc(LogootDoc doc) {
         this.doc = doc;
     }
 
-    public void localInsert(int pos, char c){
+    public synchronized void localInsert(int pos, char c){
         Atom atom=this.doc.localInsert(pos,c);
         for(Connection con:connections){
             con.sendInsertMessage(atom);
@@ -215,7 +215,7 @@ public class EditorController {
     }
 
 
-    public void localDelete(int pos){
+    public synchronized void localDelete(int pos){
         PositionIdentifier positionIdentifier=this.doc.localDelete(pos);
         for(Connection con:connections){
             con.sendDeleteMessage(positionIdentifier);
@@ -223,18 +223,25 @@ public class EditorController {
     }
 
 
-
-
-    public void remoteInsert(PositionIdentifier pos,char c){
+    public synchronized void remoteInsert(PositionIdentifier pos,char c){
         int index=doc.remoteInsert(pos,c);
         editorFrame.remoteInsert(index,String.valueOf(c));
     }
 
 
-    public void remoteDelete(PositionIdentifier pos){
+    public synchronized void remoteDelete(PositionIdentifier pos){
         int index=doc.remoteDelete(pos);
         editorFrame.remoteDelete(index);
     }
+
+    public synchronized void sycData(ArrayList<Atom> atoms){
+        this.getDoc().syc(atoms);
+        for(int i=0;i<atoms.size();i++){
+            editorFrame.remoteInsert(i,String.valueOf(atoms.get(i).getC()));
+        }
+    }
+
+
 
 
 

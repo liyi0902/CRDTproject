@@ -8,4 +8,5 @@ public abstract class Doc {
     public abstract PositionIdentifier localDelete(int pos);
     public abstract int remoteInsert(PositionIdentifier pos,char c);
     public abstract int remoteDelete(PositionIdentifier pos);
+
 }
