@@ -2,6 +2,7 @@ package editor.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import editor.message.messages.JoinMessage;
 
 /**
@@ -65,6 +66,16 @@ public class JsonUtil {
         try {
             JSONObject jsonObject=JSONObject.parseObject(text);
             return jsonObject;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static <T> T convertJSONToObject(JSONObject data, TypeReference<T> type) {
+        try {
+            T t = JSONObject.parseObject(data.toJSONString(), type);
+            return t;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

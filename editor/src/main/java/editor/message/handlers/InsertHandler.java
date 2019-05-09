@@ -1,7 +1,11 @@
 package editor.message.handlers;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.google.gson.JsonObject;
 import editor.algorithm.logoot.Atom;
+import editor.algorithm.logoot.Identifier;
 import editor.algorithm.logoot.PositionIdentifier;
 import editor.controller.EditorController;
 import editor.message.MessageHandler;
@@ -22,10 +26,14 @@ public class InsertHandler extends MessageHandler {
         for(Connection c:this.editorController.getConnections()){
             if(c!=connection){
                 c.writeMsg(msg);
+                System.out.println("send");
             }
         }
+        System.out.println("json:"+json.toJSONString());
 
-        InsertMessage<Atom> insertMessage= JsonUtil.convertJSONToObject(json,InsertMessage.class);
+        InsertMessage<Atom> insertMessage=JsonUtil.convertJSONToObject(json,new TypeReference<InsertMessage<Atom>>(){});
+
+
         PositionIdentifier pos=insertMessage.getAtom().getPos();
         char c=insertMessage.getAtom().getC();
         editorController.remoteInsert(pos,c);

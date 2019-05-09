@@ -104,6 +104,7 @@ public class EditorController {
         log.debug("incomming connection: " + Configuration.socketAddress(s));
         Connection c = new Connection(s);
         connections.add(c);
+        System.out.println("connections"+connections.size());
         return c;
     }
 

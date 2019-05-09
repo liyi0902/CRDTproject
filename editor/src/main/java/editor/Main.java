@@ -1,6 +1,7 @@
 package editor;
 
 import editor.controller.EditorController;
+import editor.view.EditorFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.*;
 import editor.utils.ProcessUtil;
@@ -58,7 +59,7 @@ public class Main {
         log.info("starting editor");
         Configuration.setProcessId(ProcessUtil.getUUID());
 
-        EditorController.getInstance();
+        EditorFrame.getInstance();
 
     }
 }

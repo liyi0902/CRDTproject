@@ -2,10 +2,13 @@ package editor.message.handlers;
 
 import com.alibaba.fastjson.JSONObject;
 
+import com.alibaba.fastjson.TypeReference;
+import editor.algorithm.logoot.Atom;
 import editor.algorithm.logoot.PositionIdentifier;
 import editor.controller.EditorController;
 import editor.message.MessageHandler;
 import editor.message.messages.DeleteMessage;
+import editor.message.messages.InsertMessage;
 import editor.network.Connection;
 import editor.utils.JsonUtil;
 
@@ -25,7 +28,8 @@ public class DeleteHandler extends MessageHandler {
                 c.writeMsg(msg);
             }
         }
-        DeleteMessage<PositionIdentifier> deleteMessage= JsonUtil.convertJSONToObject(json,DeleteMessage.class);
+
+        DeleteMessage<PositionIdentifier> deleteMessage= JsonUtil.convertJSONToObject(json,new TypeReference<DeleteMessage<PositionIdentifier>>(){});
         PositionIdentifier pos=deleteMessage.getPos();
         editorController.remoteDelete(pos);
         return true;
