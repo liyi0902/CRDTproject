@@ -20,19 +20,22 @@ public class MyKeyBoardListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //Returns the position of the text insertion caret for the text component.
-        int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
+        if(notFunctionButton(e)){
+            //Returns the position of the text insertion caret for the text component.
+            int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
 
-        if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            pos -= 1;
-            System.out.println("[delete],pos=" + pos);
-            editorController.localDelete(pos);
-        } else {
-            char c = e.getKeyChar();
-            System.out.println("[add],pos=" + pos + ",char=" + c);
-            editorController.localInsert(pos,c);
+            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                pos -= 1;
+                System.out.println("[delete],pos=" + pos);
+                editorController.localDelete(pos);
+            } else if(e.getKeyCode()!=KeyEvent.VK_LEFT&&e.getKeyCode()!=KeyEvent.VK_LEFT) {
+                char c = e.getKeyChar();
+                System.out.println("[add],pos=" + pos + ",char=" + c);
+                editorController.localInsert(pos,c);
+            }
+            ((LogootDoc)editorController.getDoc()).showAtoms();
+
         }
-        ((LogootDoc)editorController.getDoc()).showAtoms();
 
     }
 
@@ -44,21 +47,24 @@ public class MyKeyBoardListener extends KeyAdapter {
 //    @Override
 //    public void keyTyped(KeyEvent e) {
 ////        Returns the position of the text insertion caret for the text component.
-//        int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
-//        System.out.println(pos);
+//        if(e.getKeyCode()!=KeyEvent.VK_ENTER){
+//            int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
+//            System.out.println("tyoed"+pos);
 //
 //
-//        if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-//            pos -= 1;
-//            System.out.println("[delete],pos=" + pos);
-//            editorController.localDelete(pos);
-//        } else {
-//            char c = e.getKeyChar();
-//            System.out.println("[add],pos=" + pos + ",char=" + c);
-//            editorController.localInsert(pos,c);
 //        }
-//        ((LogootDoc)editorController.getDoc()).showAtoms();
 //
 //
 //    }
+
+
+    private boolean notFunctionButton(KeyEvent e) {
+        return e.getKeyCode() != KeyEvent.VK_HOME && e.getKeyCode() != KeyEvent.VK_END && e.getKeyCode() != KeyEvent.VK_PAGE_DOWN
+                && e.getKeyCode() != KeyEvent.VK_PAGE_UP && e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN
+                && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT && e.getKeyCode() != KeyEvent.VK_ESCAPE
+                && e.getKeyCode() != KeyEvent.VK_CONTROL && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_CAPS_LOCK
+                && e.getKeyCode() != KeyEvent.VK_NUM_LOCK && e.getKeyCode() != KeyEvent.VK_UNDEFINED;
+    }
+
+
 }
