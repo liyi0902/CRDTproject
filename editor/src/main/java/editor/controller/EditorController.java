@@ -79,7 +79,7 @@ public class EditorController {
             Socket s = new Socket(Configuration.getRemoteHost(), Configuration.getRemotePort());
             Connection c = outgoingConnection(s);
 
-            //todo syc the doc
+            //send the join message to remote process to request syc the doc
             c.sendJoinMessage();
 
         } catch (IOException e) {
@@ -273,11 +273,5 @@ public class EditorController {
             editorFrame.remoteInsert(i,String.valueOf(atoms.get(i).getC()));
         }
     }
-
-
-
-
-
-
 
 }

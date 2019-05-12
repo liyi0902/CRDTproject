@@ -22,3 +22,8 @@ The editor.jar is in the editor/target,you must change directory to this path be
 launching the program.  
 Here you can modify the the arguments as whatever you want to adapt different test 
 environment.  
+
+
+## About the code
+The network connection part of this project re-use some codes from my distributed system
+lecture group project in 2018 semester 1. 

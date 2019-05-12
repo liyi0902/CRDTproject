@@ -34,9 +34,6 @@ public class ConnectionListener extends Thread{
 	}
 
 
-
-
-
 	@Override
 	public void run() {
 		log.info("listening for new connections on "+port);
