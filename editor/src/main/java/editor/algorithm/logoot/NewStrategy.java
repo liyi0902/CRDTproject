@@ -11,6 +11,13 @@ import java.util.ArrayList;
 public class NewStrategy extends Strategy{
 
 
+    /**
+     * generate PositionIdentifiers
+     * @param p
+     * @param q
+     * @return
+     * @throws Exception
+     */
     @Override
     public ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q) throws Exception{
         System.out.println("p size"+p.size());
@@ -64,6 +71,12 @@ public class NewStrategy extends Strategy{
     }
 
 
+    /**
+     * compare twp list and subtract the greater part
+     * @param l2
+     * @param l1
+     * @return
+     */
     private ArrayList<Integer> subtractGreaterThan(ArrayList<Integer> l2,ArrayList<Integer> l1){
 
         int i1=0;
@@ -129,6 +142,12 @@ public class NewStrategy extends Strategy{
 
     }
 
+    /**
+     * increment a list use a delta
+     * @param l
+     * @param delta
+     * @return
+     */
     private ArrayList<Integer> increment(ArrayList<Integer> l,ArrayList<Integer> delta){
         System.out.println("l:"+l.toString());
 
@@ -152,6 +171,12 @@ public class NewStrategy extends Strategy{
 
     }
 
+    /**
+     * add a list to another list
+     * @param l
+     * @param inc
+     * @return
+     */
     private ArrayList<Integer> add(ArrayList<Integer> l,ArrayList<Integer> inc){
         if(l.size()==0){
             l.add(1);
@@ -186,6 +211,11 @@ public class NewStrategy extends Strategy{
     }
 
 
+    /**
+     * get the rest list except the head of the list
+     * @param list
+     * @return
+     */
     public ArrayList<Identifier> rest(ArrayList<Identifier> list){
         ArrayList<Identifier> res=new ArrayList<>();
         for(int i=1;i<list.size();i++){

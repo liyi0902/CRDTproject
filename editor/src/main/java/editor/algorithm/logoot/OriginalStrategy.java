@@ -72,6 +72,12 @@ public class OriginalStrategy extends Strategy{
 
     }
 
+    /**
+     * increment the list by an interval
+     * @param digits
+     * @param interval
+     * @return
+     */
     private ArrayList<Integer> increment(ArrayList<Integer> digits,int interval){
         int step=new Random().nextInt(interval)+1;
         int last=digits.get(digits.size()-1);

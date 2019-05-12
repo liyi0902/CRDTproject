@@ -58,6 +58,11 @@ public class MyKeyBoardListener extends KeyAdapter {
 //    }
 
 
+    /**
+     * exclude functional button
+     * @param e
+     * @return
+     */
     private boolean notFunctionButton(KeyEvent e) {
         return e.getKeyCode() != KeyEvent.VK_HOME && e.getKeyCode() != KeyEvent.VK_END && e.getKeyCode() != KeyEvent.VK_PAGE_DOWN
                 && e.getKeyCode() != KeyEvent.VK_PAGE_UP && e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN

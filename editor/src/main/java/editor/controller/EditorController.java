@@ -90,6 +90,10 @@ public class EditorController {
 
     }
 
+    /**
+     * close the connected
+     * @param con
+     */
     public synchronized void connectionClosed(Connection con) {
         if (!flag) {
             log.info("Remove connection {} from list", con.getSocket().getRemoteSocketAddress());
@@ -119,6 +123,10 @@ public class EditorController {
     }
 
 
+    /**
+     * get a new instance
+     * @return
+     */
     public static EditorController getInstance(){
         if(newInstance==null){
             synchronized (EditorController.class){
@@ -130,6 +138,9 @@ public class EditorController {
         return newInstance;
     }
 
+    /**
+     * initial handlers
+     */
     private void initialHandlers() {
         handlerMap.put(MessageType.JOIN.name(),new JoinHandler(this));
         handlerMap.put(MessageType.SYC.name(),new SycHandler(this));
@@ -207,6 +218,11 @@ public class EditorController {
         this.doc = doc;
     }
 
+    /**
+     * local insert an atom
+     * @param pos
+     * @param c
+     */
     public synchronized void localInsert(int pos, char c){
         Atom atom=this.doc.localInsert(pos,c);
         for(Connection con:connections){
@@ -215,6 +231,10 @@ public class EditorController {
     }
 
 
+    /**
+     * local delete an atom
+     * @param pos
+     */
     public synchronized void localDelete(int pos){
         PositionIdentifier positionIdentifier=this.doc.localDelete(pos);
         for(Connection con:connections){
@@ -223,17 +243,30 @@ public class EditorController {
     }
 
 
+    /**
+     * remote delete an atom
+     * @param pos
+     * @param c
+     */
     public synchronized void remoteInsert(PositionIdentifier pos,char c){
         int index=doc.remoteInsert(pos,c);
         editorFrame.remoteInsert(index,String.valueOf(c));
     }
 
 
+    /**
+     * remote delete an pos
+     * @param pos
+     */
     public synchronized void remoteDelete(PositionIdentifier pos){
         int index=doc.remoteDelete(pos);
         editorFrame.remoteDelete(index);
     }
 
+    /**
+     * syc the data when joining
+     * @param atoms
+     */
     public synchronized void sycData(ArrayList<Atom> atoms){
         this.getDoc().syc(atoms);
         for(int i=0;i<atoms.size();i++){

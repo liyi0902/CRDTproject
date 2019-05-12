@@ -41,22 +41,27 @@ public class LogootDoc extends Doc {
 //        System.out.println("atoms size: "+atoms.size());
         ArrayList<Identifier> before;
         ArrayList<Identifier> after;
+
+        // if this character is the first character, it will between 0 and MAX_VALUE
         if(atoms.size()==0){
             before=new ArrayList<>();
             before.add(new Identifier(0,""));
             after=new ArrayList<>();
             after.add(new Identifier(Integer.MAX_VALUE,""));
         }
+        //if the character is inserted in front, it between 0 and the original first character
         else if(pos==0){
             before=new ArrayList<>();
             before.add(new Identifier(0,""));
             after=atoms.get(pos).getPos().getIdentifiers();
         }
+        //if the character is inserted at last,  it between the original last character and MAX_VALUE
         else if(pos==atoms.size()){
             before=atoms.get(pos-1).getPos().getIdentifiers();
             after=new ArrayList<>();
             after.add(new Identifier(Integer.MAX_VALUE,""));
         }
+        //else , find the before and after character position of the inserted character
         else {
             before=atoms.get(pos-1).getPos().getIdentifiers();
             after=atoms.get(pos).getPos().getIdentifiers();
@@ -156,20 +161,32 @@ public class LogootDoc extends Doc {
         return -1;
     }
 
+    /**
+     * syc the doc when a new process join
+     * @param atoms
+     */
     public void syc(ArrayList<Atom> atoms){
         this.setAtoms(atoms);
     }
 
 
-
+    /**
+     * print the atoms for test
+     */
     public void showAtoms(){
         System.out.println(atoms.toString());
     }
 
+    /**
+     * use the strategy of paper
+     */
     private void useOriginalStrategy(){
         this.strategy=new OriginalStrategy();
     }
 
+    /**
+     * use a new strategy
+     */
     private void useNewStrategy(){
         this.strategy=new NewStrategy();
     }

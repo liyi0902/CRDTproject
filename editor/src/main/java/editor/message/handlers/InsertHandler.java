@@ -14,6 +14,9 @@ import editor.message.messages.SycMessage;
 import editor.network.Connection;
 import editor.utils.JsonUtil;
 
+/**
+ * handle the insert message
+ */
 public class InsertHandler extends MessageHandler {
     private EditorController editorController;
 
@@ -24,6 +27,7 @@ public class InsertHandler extends MessageHandler {
     @Override
     public boolean processMessage(JSONObject json, Connection connection) {
         String msg=json.toJSONString();
+        //send the message to other process
         for(Connection c:this.editorController.getConnections()){
             if(c!=connection){
                 c.writeMsg(msg);

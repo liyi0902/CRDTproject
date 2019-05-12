@@ -4,6 +4,9 @@ import editor.Configuration;
 
 import java.io.Serializable;
 
+/**
+ *  An identifier is a couple ⟨pos, site⟩ where pos is an integer and site a site identifier.
+ */
 public class Identifier implements Serializable, Comparable<Identifier> {
     private int digit;
     private String siteId;

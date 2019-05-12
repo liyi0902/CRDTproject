@@ -12,6 +12,9 @@ import editor.message.messages.InsertMessage;
 import editor.network.Connection;
 import editor.utils.JsonUtil;
 
+/**
+ * handle the delete message
+ */
 public class DeleteHandler extends MessageHandler {
 
     private EditorController editorController;
@@ -23,6 +26,7 @@ public class DeleteHandler extends MessageHandler {
     @Override
     public boolean processMessage(JSONObject json, Connection connection) {
         String msg=json.toJSONString();
+        //send the msg to other process
         for(Connection c:this.editorController.getConnections()){
             if(c!=connection){
                 c.writeMsg(msg);

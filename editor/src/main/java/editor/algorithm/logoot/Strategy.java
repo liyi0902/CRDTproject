@@ -6,8 +6,22 @@ public abstract class Strategy {
 
 //    abstract PositionIdentifier generatePositionIdentifiers(PositionIdentifier p, PositionIdentifier q);
 
+    /**
+     * generate PositionIdentifiers
+     * @param p  identifier list before the current list
+     * @param q  identifier list after the current list
+     * @return
+     * @throws Exception
+     */
     abstract ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q) throws Exception;
 
+    /**
+     * generate PositionIdentifiers
+     * @param p  identifier list before the current list
+     * @param q identifier list after the current list
+     * @param bound the largest interval
+     * @return
+     */
     abstract ArrayList<Identifier> generatePositionIdentifiers(ArrayList<Identifier> p, ArrayList<Identifier> q,int bound) ;
 
 
@@ -44,7 +58,12 @@ public abstract class Strategy {
     }
 
 
-
+    /**
+     * get digits of a identifier list
+     * @param identifiers
+     * @param index last index of the list
+     * @return
+     */
     public ArrayList<Integer> getDigits(ArrayList<Identifier> identifiers,int index){
         ArrayList<Integer> list=new ArrayList<>();
         int len=identifiers.size();
@@ -60,6 +79,12 @@ public abstract class Strategy {
 
     }
 
+    /**
+     * get the certain digit of the Identifier list
+     * @param identifiers
+     * @param index
+     * @return
+     */
     public int getDigit(ArrayList<Identifier> identifiers,int index){
         if(index<identifiers.size()){
             return identifiers.get(index).getDigit();

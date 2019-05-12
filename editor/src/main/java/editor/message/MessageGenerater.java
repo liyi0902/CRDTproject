@@ -7,6 +7,9 @@ import editor.message.messages.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * message generater to generate different msg
+ */
 public class MessageGenerater {
     public static Message generateInsertMessage(Atom atom){
         return new InsertMessage<>(MessageType.INSET.name(),atom);

@@ -20,6 +20,7 @@ public class Main {
         options.addOption("lp",true,"local port number");
         options.addOption("rp",true,"remote port number");
         options.addOption("rh",true,"remote hostname");
+        options.addOption("u",true,"process id");
 
         CommandLineParser parser = new DefaultParser();
 
@@ -56,8 +57,17 @@ public class Main {
             }
         }
 
+        if(cmd.hasOption("u")){
+            Configuration.setProcessId(cmd.getOptionValue("u"));
+        }
+        else {
+            // set the process id by random uuid
+            Configuration.setProcessId(ProcessUtil.getUUID());
+        }
+
+
         log.info("starting editor");
-        Configuration.setProcessId(ProcessUtil.getUUID());
+
 
         EditorFrame.getInstance();
 

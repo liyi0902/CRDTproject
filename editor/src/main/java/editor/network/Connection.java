@@ -33,6 +33,11 @@ public class Connection extends Thread {
 	}
 
 
+	/**
+	 * send message
+	 * @param msg
+	 * @return
+	 */
 	public boolean writeMsg(String msg) {
 		if(open){
 			outwriter.println(msg);
@@ -42,6 +47,9 @@ public class Connection extends Thread {
 		return false;
 	}
 
+	/**
+	 * close connection
+	 */
 	public void closeCon(){
 		if(open){
 			log.info("closing connection "+ Configuration.socketAddress(socket));
@@ -60,6 +68,7 @@ public class Connection extends Thread {
 
 	@Override
 	public void run(){
+		//process message
 		try {
 			String data;
 			while(!flag && (data = inreader.readLine())!=null){
@@ -115,30 +124,48 @@ public class Connection extends Thread {
 	}
 
 
+	/**
+	 * send insert message
+	 * @param atom
+	 */
 	public void sendInsertMessage(Atom atom){
 		Message message=MessageGenerater.generateInsertMessage(atom);
 		String msg= JsonUtil.convertObjectToJSON(message);
 		this.writeMsg(msg);
 	}
 
+	/**
+	 * send delete message
+	 * @param pos
+	 */
 	public void sendDeleteMessage(PositionIdentifier pos){
 		Message message=MessageGenerater.generateDeleteMessage(pos);
 		String msg= JsonUtil.convertObjectToJSON(message);
 		this.writeMsg(msg);
 	}
 
+	/**
+	 * send exit message
+	 */
 	public void sendExitMessage(){
 		Message message=MessageGenerater.generateExitMessage(Configuration.getProcessId());
 		String msg= JsonUtil.convertObjectToJSON(message);
 		this.writeMsg(msg);
 	}
 
+	/**
+	 * send syc message
+	 * @param atoms
+	 */
 	public void sendSycMessage(ArrayList<Atom> atoms){
 		Message message=MessageGenerater.generateSycMessage(atoms);
 		String msg= JsonUtil.convertObjectToJSON(message);
 		this.writeMsg(msg);
 	}
 
+	/**
+	 * send join message
+	 */
 	public void sendJoinMessage(){
 		Message message= MessageGenerater.generateJoinMessage(Configuration.getProcessId());
 		String msg= JsonUtil.convertObjectToJSON(message);

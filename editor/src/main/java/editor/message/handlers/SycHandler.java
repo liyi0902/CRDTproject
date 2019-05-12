@@ -11,6 +11,9 @@ import editor.utils.JsonUtil;
 
 import java.util.ArrayList;
 
+/**
+ * handle the syc message
+ */
 public class SycHandler extends MessageHandler {
 
     private EditorController editorController;

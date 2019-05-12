@@ -72,6 +72,13 @@ public class JsonUtil {
         }
     }
 
+    /**
+     * convert JSONObject to object
+     * @param data
+     * @param type
+     * @param <T>
+     * @return
+     */
     public static <T> T convertJSONToObject(JSONObject data, TypeReference<T> type) {
         try {
             T t = JSONObject.parseObject(data.toJSONString(), type);
@@ -81,9 +88,6 @@ public class JsonUtil {
             return null;
         }
     }
-
-
-
 
 
 

@@ -7,6 +7,9 @@ import editor.message.MessageHandler;
 import editor.network.Connection;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * handle the exit message
+ */
 @Slf4j
 public class ExitHandler extends MessageHandler {
 

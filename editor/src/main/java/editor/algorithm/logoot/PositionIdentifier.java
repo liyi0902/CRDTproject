@@ -74,10 +74,16 @@ public class PositionIdentifier implements Serializable, Comparable<PositionIden
     }
 
 
+    /**
+     * show IdentifierList for test
+     */
     public void showIdentifierList(){
         System.out.println(identifiers.toString());
     }
 
+    /**
+     * showDigitList for test
+     */
     public void showDigitList(){
         ArrayList<Integer> list=new ArrayList<>();
         for(Identifier i:identifiers){
