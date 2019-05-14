@@ -179,7 +179,6 @@ public class EditorFrame extends JFrame {
         }
         textArea.replaceRange("",pos,pos+1);
 
-
     }
 
 

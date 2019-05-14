@@ -126,19 +126,38 @@ public class LogootDoc extends Doc {
     /**
      * insert an atom to the crdt structure
      *
-     * todo  optimization can use binary search
      * @param c
      * @param pos
      * @return
      */
     private int insert(PositionIdentifier pos,char c) {
+        //use binary search to optimize the algorithm
         Atom atom=new Atom(c, pos);
-        for(int i=0;i<atoms.size();i++){
-            if(atoms.get(i).getPos().compareTo(pos)>0){
-                atoms.add(i,atom);
-                return i;
+        int low=0;
+        int hi=atoms.size()-1;
+        while (low<=hi){
+            int mid=(low+hi)/2;
+            if(atoms.get(mid).getPos().compareTo(pos)>0&&(mid==0||atoms.get(mid-1).getPos().compareTo(pos)<0)){
+                atoms.add(mid,atom);
+                return mid;
+            }
+            else if(atoms.get(mid).getPos().compareTo(pos)<0){
+                low=mid+1;
+            }
+            else {
+                hi=mid-1;
             }
         }
+
+
+//        for(int i=0;i<atoms.size();i++){
+//            if(atoms.get(i).getPos().compareTo(pos)>0){
+//                atoms.add(i,atom);
+//                return i;
+//            }
+//        }
+
+
         atoms.add(atom);
         return atoms.size()-1;
     }
@@ -147,17 +166,34 @@ public class LogootDoc extends Doc {
     /**
      * delete an atom from the crdt structure
      *
-     * todo  optimization can use binary search
      * @param pos
      * @return
      */
     private int delete(PositionIdentifier pos) {
-        for(int i=0;i<atoms.size();i++){
-            if(atoms.get(i).getPos().equals(pos)){
-                atoms.remove(i);
-                return i;
+        //use binary search to optimize the algorithm
+        int low=0;
+        int hi=atoms.size()-1;
+        while (low<=hi){
+            int mid=(low+hi)/2;
+            if(atoms.get(mid).getPos().equals(pos)){
+                atoms.remove(mid);
+                return mid;
+            }
+            else if(atoms.get(mid).getPos().compareTo(pos)<0){
+                low=mid+1;
+            }
+            else {
+                hi=mid-1;
             }
         }
+
+//        for(int i=0;i<atoms.size();i++){
+//            if(atoms.get(i).getPos().equals(pos)){
+//                atoms.remove(i);
+//                return i;
+//            }
+//        }
+
         return -1;
     }
 
