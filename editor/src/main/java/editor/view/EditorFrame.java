@@ -157,9 +157,13 @@ public class EditorFrame extends JFrame {
      * @param str
      */
     public synchronized void remoteInsert(int pos, String str) {
-        //TODO
 
+        int caret=textArea.getCaretPosition();
+        if(pos<caret){
+            textArea.setCaretPosition(caret+1);
+        }
         textArea.insert(str,pos);
+
 
     }
 
@@ -168,9 +172,13 @@ public class EditorFrame extends JFrame {
      * @param pos
      */
     public synchronized void remoteDelete(int pos) {
-        //TODO
 
+        int caret=textArea.getCaretPosition();
+        if(pos<caret){
+            textArea.setCaretPosition(caret-1);
+        }
         textArea.replaceRange("",pos,pos+1);
+
 
     }
 

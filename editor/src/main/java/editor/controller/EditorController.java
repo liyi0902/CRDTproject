@@ -2,14 +2,10 @@ package editor.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import editor.Configuration;
-import editor.algorithm.Doc;
 import editor.algorithm.logoot.Atom;
 import editor.algorithm.logoot.LogootDoc;
 import editor.algorithm.logoot.PositionIdentifier;
-import editor.message.Message;
 import editor.message.MessageHandler;
 import editor.message.MessageType;
 import editor.message.handlers.*;
@@ -23,7 +19,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * the operation of the edit and the network system
@@ -228,6 +223,8 @@ public class EditorController {
         for(Connection con:connections){
             con.sendInsertMessage(atom);
         }
+        System.out.println("CaretPosition  "+this.getEditorFrame().getTextArea().getCaretPosition());
+
     }
 
 
@@ -251,6 +248,7 @@ public class EditorController {
     public synchronized void remoteInsert(PositionIdentifier pos,char c){
         int index=doc.remoteInsert(pos,c);
         editorFrame.remoteInsert(index,String.valueOf(c));
+        System.out.println("CaretPosition  "+this.getEditorFrame().getTextArea().getCaretPosition());
     }
 
 
@@ -261,6 +259,7 @@ public class EditorController {
     public synchronized void remoteDelete(PositionIdentifier pos){
         int index=doc.remoteDelete(pos);
         editorFrame.remoteDelete(index);
+
     }
 
     /**
