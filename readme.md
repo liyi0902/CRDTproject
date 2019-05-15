@@ -7,9 +7,9 @@ calling logoot.
 The program has 5 arguments.  
 lp ———— local port  
 rp ———— remote port  
-lh ———— local hostname (default value = localhost)  
+lh ———— local hostname (selected,default value = localhost)  
 rh ———— remote hostname  
-u ———— process id (default value = random uuid)  
+u ———— process id (selected, default value = random uuid)  
 
 Assume you want to launch three process,you can start in following sequence if you test
 the program only in one computer:  
