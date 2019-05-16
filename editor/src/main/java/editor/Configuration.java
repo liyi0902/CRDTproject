@@ -2,6 +2,9 @@ package editor;
 
 import java.net.Socket;
 
+/**
+ * Global Configuration
+ */
 public class Configuration {
     public static String localHost ="localhost";
     public static String processId = "";
