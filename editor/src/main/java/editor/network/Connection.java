@@ -76,6 +76,7 @@ public class Connection extends Thread {
 				flag = !EditorController.getInstance().process(this,data);
 			}
 			log.debug("connection closed to "+Configuration.socketAddress(socket));
+			EditorController.getInstance().connectionClosed(this);
 		} catch (IOException e) {
 			log.error("connection "+Configuration.socketAddress(socket)+" closed with exception: "+e);
 			EditorController.getInstance().connectionClosed(this);
