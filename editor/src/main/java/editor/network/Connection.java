@@ -16,6 +16,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
+/**
+ * connection between different process
+ */
 @Slf4j
 public class Connection extends Thread {
 	private BufferedReader inreader;

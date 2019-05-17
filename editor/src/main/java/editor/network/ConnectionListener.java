@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * listening a port for new socket connecting in
+ */
 @Slf4j
 public class ConnectionListener extends Thread{
 	private ServerSocket serverSocket=null;
