@@ -34,6 +34,9 @@ public class OpenFileAction extends AbstractAction {
                 FileUtil.openFile(editorFrame);
             }
         }
+        else {
+            FileUtil.openFile(editorFrame);
+        }
 
 
     }
