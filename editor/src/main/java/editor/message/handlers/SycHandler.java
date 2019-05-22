@@ -10,6 +10,7 @@ import editor.network.Connection;
 import editor.utils.JsonUtil;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * handle the syc message
@@ -25,10 +26,10 @@ public class SycHandler extends MessageHandler {
     @Override
     public boolean processMessage(JSONObject json, Connection connection) {
 
-        SycMessage<ArrayList<Atom>> sycMessage= JsonUtil.convertJSONToObject(json,new TypeReference<SycMessage<ArrayList<Atom>>>(){});
+        SycMessage<CopyOnWriteArrayList<Atom>> sycMessage= JsonUtil.convertJSONToObject(json,new TypeReference<SycMessage<CopyOnWriteArrayList<Atom>>>(){});
 
         System.out.println(sycMessage.toString());
-        ArrayList<Atom> atoms=sycMessage.getData();
+        CopyOnWriteArrayList<Atom> atoms=sycMessage.getData();
         System.out.println("recevie atoms size"+atoms.size());
         editorController.sycData(atoms);
 

@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * the operation of the edit and the network system
@@ -28,7 +29,7 @@ public class EditorController {
 
     private EditorFrame editorFrame;
     private ConnectionListener connectionListener;
-    private ArrayList<Connection> connections;
+    private CopyOnWriteArrayList<Connection> connections;
     private boolean flag = false;
     private volatile static EditorController newInstance;
     private HashMap<String, MessageHandler> handlerMap;
@@ -37,7 +38,7 @@ public class EditorController {
 
     private EditorController(){
         editorFrame=EditorFrame.getInstance();
-        connections = new ArrayList<Connection>();
+        connections = new CopyOnWriteArrayList<Connection>();
         handlerMap=new HashMap<>();
         this.initialHandlers();
         doc=new LogootDoc();
@@ -179,11 +180,11 @@ public class EditorController {
         this.connectionListener = connectionListener;
     }
 
-    public ArrayList<Connection> getConnections() {
+    public CopyOnWriteArrayList<Connection> getConnections() {
         return connections;
     }
 
-    public void setConnections(ArrayList<Connection> connections) {
+    public void setConnections(CopyOnWriteArrayList<Connection> connections) {
         this.connections = connections;
     }
 
@@ -265,7 +266,7 @@ public class EditorController {
      * syc the data when joining
      * @param atoms
      */
-    public synchronized void sycData(ArrayList<Atom> atoms){
+    public synchronized void sycData(CopyOnWriteArrayList<Atom> atoms){
         this.getDoc().syc(atoms);
         for(int i=0;i<atoms.size();i++){
             editorFrame.remoteInsert(i,String.valueOf(atoms.get(i).getC()));

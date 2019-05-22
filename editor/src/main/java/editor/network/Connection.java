@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -161,7 +162,7 @@ public class Connection extends Thread {
 	 * send syc message
 	 * @param atoms
 	 */
-	public void sendSycMessage(ArrayList<Atom> atoms){
+	public void sendSycMessage(CopyOnWriteArrayList<Atom> atoms){
 		Message message=MessageGenerater.generateSycMessage(atoms);
 		String msg= JsonUtil.convertObjectToJSON(message);
 		this.writeMsg(msg);

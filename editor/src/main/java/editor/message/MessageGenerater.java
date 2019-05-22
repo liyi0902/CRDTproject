@@ -6,6 +6,7 @@ import editor.message.messages.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * message generater to generate different msg
@@ -27,7 +28,7 @@ public class MessageGenerater {
         return new ExitMessage(MessageType.EXIT.name(),id);
     }
 
-    public static Message generateSycMessage(ArrayList<Atom> atoms){
+    public static Message generateSycMessage(CopyOnWriteArrayList<Atom> atoms){
 //        HashMap<Integer,Atom> map=new HashMap<>();
 //        for(int i=0;i<atoms.size();i++){
 //            map.put(i,atoms.get(i));

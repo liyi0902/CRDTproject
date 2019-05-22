@@ -11,6 +11,7 @@ import editor.message.messages.SycMessage;
 import editor.network.Connection;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * handle the join message
@@ -26,7 +27,7 @@ public class JoinHandler extends MessageHandler {
     public boolean processMessage(JSONObject json, Connection connection) {
 
         // when receive join message,send the syc message
-        ArrayList<Atom> atoms=editorController.getDoc().getAtoms();
+        CopyOnWriteArrayList<Atom> atoms=editorController.getDoc().getAtoms();
         System.out.println("atoms size"+atoms.size());
         connection.sendSycMessage(atoms);
         editorController.getConnections().add(connection);

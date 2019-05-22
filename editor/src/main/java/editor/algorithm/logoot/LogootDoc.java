@@ -3,6 +3,7 @@ package editor.algorithm.logoot;
 import editor.algorithm.Doc;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Doc for crdt structure
@@ -10,12 +11,12 @@ import java.util.ArrayList;
  */
 public class LogootDoc extends Doc {
     private int totalClock;
-    private ArrayList<Atom> atoms;
+    private CopyOnWriteArrayList<Atom> atoms;
     private Strategy strategy;
 
     public LogootDoc(){
         this.totalClock=0;
-        this.atoms=new ArrayList<>();
+        this.atoms=new CopyOnWriteArrayList<>();
         this.useOriginalStrategy();
     }
 
@@ -202,7 +203,7 @@ public class LogootDoc extends Doc {
      * syc the doc when a new process join
      * @param atoms
      */
-    public void syc(ArrayList<Atom> atoms){
+    public void syc(CopyOnWriteArrayList<Atom> atoms){
         this.setAtoms(atoms);
     }
 
@@ -228,11 +229,11 @@ public class LogootDoc extends Doc {
         this.strategy=new NewStrategy();
     }
 
-    public ArrayList<Atom> getAtoms() {
+    public CopyOnWriteArrayList<Atom> getAtoms() {
         return atoms;
     }
 
-    public void setAtoms(ArrayList<Atom> atoms) {
+    public void setAtoms(CopyOnWriteArrayList<Atom> atoms) {
         this.atoms = atoms;
     }
 
