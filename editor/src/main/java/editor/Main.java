@@ -66,7 +66,7 @@ public class Main {
         }
 
 
-        log.info("starting editor");
+        log.info("starting a new editor");
 
 
         EditorFrame.getInstance();
