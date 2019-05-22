@@ -158,7 +158,7 @@ public class EditorFrame extends JFrame {
      */
     public synchronized void remoteInsert(int pos, String str) {
 
-        System.out.println("CaretPosition before remote insert "+this.getTextArea().getCaretPosition());
+//        System.out.println("CaretPosition before remote insert "+this.getTextArea().getCaretPosition());
 
         int caret=textArea.getCaretPosition();
         textArea.insert(str,pos);

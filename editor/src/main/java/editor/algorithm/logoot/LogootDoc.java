@@ -95,6 +95,7 @@ public class LogootDoc extends Doc {
     public synchronized PositionIdentifier localDelete(int pos) {
         //may has bug，need test
         System.out.println("Remove pos= "+pos);
+
         return atoms.remove(pos).getPos();
 
     }
@@ -130,7 +131,7 @@ public class LogootDoc extends Doc {
      * @param pos
      * @return
      */
-    private int insert(PositionIdentifier pos,char c) {
+    private synchronized int insert(PositionIdentifier pos,char c) {
         //use binary search to optimize the algorithm
         Atom atom=new Atom(c, pos);
         int low=0;
@@ -169,7 +170,7 @@ public class LogootDoc extends Doc {
      * @param pos
      * @return
      */
-    private int delete(PositionIdentifier pos) {
+    private synchronized int delete(PositionIdentifier pos) {
         //use binary search to optimize the algorithm
         int low=0;
         int hi=atoms.size()-1;

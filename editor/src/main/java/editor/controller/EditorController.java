@@ -102,7 +102,6 @@ public class EditorController {
     public synchronized Connection incomingConnection(Socket s) throws IOException {
         log.debug("incomming connection: " + Configuration.socketAddress(s));
         Connection c = new Connection(s);
-        connections.add(c);
         System.out.println("connections"+connections.size());
         return c;
     }
@@ -248,7 +247,7 @@ public class EditorController {
     public synchronized void remoteInsert(PositionIdentifier pos,char c){
         int index=doc.remoteInsert(pos,c);
         editorFrame.remoteInsert(index,String.valueOf(c));
-        System.out.println("CaretPosition  "+this.getEditorFrame().getTextArea().getCaretPosition());
+        System.out.println("CaretPosition after remote insert "+this.getEditorFrame().getTextArea().getCaretPosition());
     }
 
 
