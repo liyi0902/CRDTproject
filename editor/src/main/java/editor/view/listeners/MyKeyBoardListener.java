@@ -20,7 +20,7 @@ public class MyKeyBoardListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(notFunctionButton(e)){
+//        if(notFunctionButton(e)){
             //Returns the position of the text insertion caret for the text component.
             int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
 
@@ -35,7 +35,7 @@ public class MyKeyBoardListener extends KeyAdapter {
             }
             ((LogootDoc)editorController.getDoc()).showAtoms();
 
-        }
+//        }
 
     }
 
@@ -47,15 +47,13 @@ public class MyKeyBoardListener extends KeyAdapter {
 //    @Override
 //    public void keyTyped(KeyEvent e) {
 ////        Returns the position of the text insertion caret for the text component.
-//        if(e.getKeyCode()!=KeyEvent.VK_ENTER){
-//            int pos = editorController.getEditorFrame().getTextArea().getCaretPosition();
-//            System.out.println("tyoed"+pos);
-//
-//
-//        }
+//        System.out.println(editorController.getEditorFrame().getTextArea().getCaretPosition());
 //
 //
 //    }
+
+
+
 
 
     /**

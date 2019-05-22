@@ -71,5 +71,15 @@ public class Main {
 
         EditorFrame.getInstance();
 
+//        while (true){
+//            try {
+//                Thread.sleep(5000);
+//                System.out.println(EditorFrame.getInstance().getTextArea().getCaretPosition());
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//
+//        }
+
     }
 }
