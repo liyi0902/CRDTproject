@@ -29,7 +29,7 @@ public class JoinHandler extends MessageHandler {
         ArrayList<Atom> atoms=editorController.getDoc().getAtoms();
         System.out.println("atoms size"+atoms.size());
         connection.sendSycMessage(atoms);
-
+        editorController.getConnections().add(connection);
         return true;
     }
 
