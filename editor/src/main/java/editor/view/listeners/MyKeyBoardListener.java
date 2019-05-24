@@ -27,7 +27,12 @@ public class MyKeyBoardListener extends KeyAdapter {
             if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                 if(pos>0){
                     pos -= 1;
-                    System.out.println("[delete],pos=" + pos);
+                    try {
+                        System.out.println("[delete],pos=" + pos+",char="+editorController.getEditorFrame().getTextArea().getText(pos,1));
+                    }
+                    catch (Exception x){
+                        x.printStackTrace();
+                    }
                     editorController.localDelete(pos);
                 }
             } else if(e.getKeyCode()!=KeyEvent.VK_LEFT&&e.getKeyCode()!=KeyEvent.VK_LEFT) {
@@ -35,7 +40,7 @@ public class MyKeyBoardListener extends KeyAdapter {
                 System.out.println("[add],pos=" + pos + ",char=" + c);
                 editorController.localInsert(pos,c);
             }
-            ((LogootDoc)editorController.getDoc()).showAtoms();
+//            ((LogootDoc)editorController.getDoc()).showAtoms();
 
         }
 

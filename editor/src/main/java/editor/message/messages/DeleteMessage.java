@@ -27,4 +27,12 @@ public class DeleteMessage<T> extends Message {
     public void setPos(T pos) {
         this.pos = pos;
     }
+
+    @Override
+    public String toString() {
+        return "DeleteMessage{" +
+                "type='" + type + '\'' +
+                ", pos=" + pos +
+                '}';
+    }
 }

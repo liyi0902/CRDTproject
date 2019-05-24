@@ -160,6 +160,7 @@ public class EditorFrame extends JFrame {
 
 //        System.out.println("CaretPosition before remote insert "+this.getTextArea().getCaretPosition());
 
+        System.out.println("remote insert an character"+",str="+str+",pos="+pos);
         int caret=textArea.getCaretPosition();
         textArea.insert(str,pos);
         if(pos<caret){
@@ -174,11 +175,18 @@ public class EditorFrame extends JFrame {
      */
     public synchronized void remoteDelete(int pos) {
 
+
         int caret=textArea.getCaretPosition();
         if(pos<caret) {
             textArea.setCaretPosition(caret - 1);
         }
-        textArea.replaceRange("",pos,pos+1);
+        try{
+            System.out.println("remote delete an character"+",str= "+textArea.getText(pos,1)+",pos="+pos);
+            textArea.replaceRange("",pos,pos+1);
+        }catch (Exception e){
+
+        }
+
 
 //        try{
 //            if(pos<caret){

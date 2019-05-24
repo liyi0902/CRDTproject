@@ -62,7 +62,7 @@ public class OriginalStrategy extends Strategy{
             step=Math.min(interval,bound);
 
         }
-        System.out.println("step: "+step);
+//        System.out.println("step: "+step);
 
         ArrayList<Integer> digits=getDigits(p,index);
 

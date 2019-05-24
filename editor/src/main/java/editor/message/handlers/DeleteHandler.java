@@ -32,8 +32,12 @@ public class DeleteHandler extends MessageHandler {
                 c.writeMsg(msg);
             }
         }
+        System.out.println("json:"+json.toJSONString());
+
 
         DeleteMessage<PositionIdentifier> deleteMessage= JsonUtil.convertJSONToObject(json,new TypeReference<DeleteMessage<PositionIdentifier>>(){});
+        System.out.println(deleteMessage.toString());
+
         PositionIdentifier pos=deleteMessage.getPos();
         editorController.remoteDelete(pos);
         return true;

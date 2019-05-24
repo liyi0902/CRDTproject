@@ -76,7 +76,7 @@ public class Connection extends Thread {
 		try {
 			String data;
 			while(!flag && (data = inreader.readLine())!=null){
-				log.debug("receive data {}",data);
+//				log.debug("receive data {}",data);
 				flag = !EditorController.getInstance().process(this,data);
 			}
 			log.debug("connection closed to "+Configuration.socketAddress(socket));

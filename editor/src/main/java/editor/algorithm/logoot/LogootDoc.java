@@ -1,6 +1,7 @@
 package editor.algorithm.logoot;
 
 import editor.algorithm.Doc;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -9,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Doc for crdt structure
  * we use list to store atoms,maybe use tree structure is better . treemap? treeset?
  */
+@Slf4j
 public class LogootDoc extends Doc {
     private int totalClock;
     private CopyOnWriteArrayList<Atom> atoms;
@@ -96,8 +98,16 @@ public class LogootDoc extends Doc {
     public synchronized PositionIdentifier localDelete(int pos) {
         //may has bug，need test
         System.out.println("Remove pos= "+pos);
+        try {
+            Atom atom=atoms.remove(pos);
+            System.out.println("local delete:"+atom.toString());
 
-        return atoms.remove(pos).getPos();
+            return atom.getPos();
+        }
+        catch (Exception e){
+            log.error(e.toString());
+            return null;
+        }
 
     }
 
@@ -178,6 +188,7 @@ public class LogootDoc extends Doc {
         while (low<=hi){
             int mid=(low+hi)/2;
             if(atoms.get(mid).getPos().equals(pos)){
+                System.out.println("remote delete:"+atoms.get(mid).toString());
                 atoms.remove(mid);
                 return mid;
             }

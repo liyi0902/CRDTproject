@@ -152,7 +152,7 @@ public class EditorController {
      * @return
      */
     public synchronized boolean process(Connection con, String msg) {
-        log.debug("received message [{}] from [{}]", msg, Configuration.socketAddress(con.getSocket()));
+//        log.debug("received message [{}] from [{}]", msg, Configuration.socketAddress(con.getSocket()));
 
         boolean isSucc = false;
         try {
@@ -223,7 +223,7 @@ public class EditorController {
         for(Connection con:connections){
             con.sendInsertMessage(atom);
         }
-        System.out.println("CaretPosition  "+this.getEditorFrame().getTextArea().getCaretPosition());
+        System.out.println("CaretPosition before local insert "+this.getEditorFrame().getTextArea().getCaretPosition());
 
     }
 
@@ -234,9 +234,12 @@ public class EditorController {
      */
     public synchronized void localDelete(int pos){
         PositionIdentifier positionIdentifier=this.doc.localDelete(pos);
-        for(Connection con:connections){
-            con.sendDeleteMessage(positionIdentifier);
+        if(positionIdentifier!=null){
+            for(Connection con:connections){
+                con.sendDeleteMessage(positionIdentifier);
+            }
         }
+
     }
 
 
